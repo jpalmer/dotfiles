@@ -1,0 +1,10 @@
+*.aux
+*.log
+*.swp
+*.mdb
+*.pdf
+*.dll
+*.exe
+*.gz
+*.dvi
+*sigfile
