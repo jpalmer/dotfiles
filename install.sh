@@ -1,6 +1,9 @@
+#!/bin/sh
+#assumes that the repo is in ~/dotfiles
+#first remove the old files
 rm ~/.bashrc ~/.vimrc
 rm -rf ~/.vim
-git reset --hard #incase stuff got deleted
-ln -s .bashrc ~/.bashrc
-ln -s .vimrc ~/.vimrc
-ln -s .vim ~/.vim
+#now use soft links to use the files from the repo
+ln -sf dotfiles/.bashrc ~/.bashrc
+ln -sf dotfiles/.vimrc ~/.vimrc
+ln -sf dotfiles/.vim ~/.vim
