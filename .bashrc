@@ -88,6 +88,7 @@ alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
 #My aliases
+alias gdh='git diff HEAD'
 alias top='htop'
 alias used='cat ~/.bash_history | sort | uniq -c | sort -n | tail'
 alias revcount='git log --oneline --all | wc -l'
