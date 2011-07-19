@@ -91,6 +91,8 @@ alias l='ls -CF'
 #git
 alias gdh='git diff HEAD'
 alias gcm='git commit -m'
+alias gs='git status'
+#others
 alias top='htop'
 alias used='cat ~/.bash_history | sort | uniq -c | sort -n | tail'
 alias revcount='git log --oneline --all | wc -l'
