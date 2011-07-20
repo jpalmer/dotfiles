@@ -94,10 +94,13 @@ alias gcm='git commit -m'
 alias gs='git status'
 #others
 alias top='htop'
+#calculates most used commands
 alias used='cat ~/.bash_history | sort | uniq -c | sort -n | tail'
 alias revcount='git log --oneline --all | wc -l'
 alias vi='vim' #helpful - on suphys invoking as vi reads different startup files
-function useds(){ #this might be better in an alias once i figure out the escaping
+
+#calculates most used commands but ignores arguments
+function useds(){
 cat ~/.bash_history | awk {'print $1'} | sort | uniq -c | sort -n | tail
 }
 alias open='gnome-open'
