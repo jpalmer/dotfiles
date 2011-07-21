@@ -92,6 +92,7 @@ alias l='ls -CF'
 alias gdh='git diff HEAD'
 alias gcm='git commit -m'
 alias gs='git status'
+alias ga='git add .'
 #others
 alias top='htop'
 #calculates most used commands
