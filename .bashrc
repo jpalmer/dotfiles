@@ -85,6 +85,7 @@ alias ci='vim'
 alias ks='ls'
 alias ake='make'
 alias nake='make'
+alias naje='make'
 # some more ls aliases
 alias ll='ls -alF'
 alias la='ls -A'
