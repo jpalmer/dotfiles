@@ -124,7 +124,7 @@ pdflatex $1 && bibtex $1 && pdflatex $1 && pdflatex $1
 #evince doesn't go into the background automatically, but doing this fixes that problem - essentially aliases evince to evince &
 #cannot be done with an alias because an alias can't fiddle with arguments
 function evince {
-exec evince $1 &
+exec evince "$1" &
 }
 #create a skeleton latex document
 function latheader {
