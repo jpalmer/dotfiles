@@ -151,7 +151,7 @@ echo "*.aux
 }
 #fsharp aliases - could porbably do better with some sor to of copy script
 alias fsc='mono ~/FSharp-2.0.0.0/bin/fsc.exe'
-alias fsi='mono ~/FSharp-2.0.0.0/bin/fsi.exe' 
+alias fsi='mono ~/FSharp-2.0.0.0/bin/fsi.exe --readline+ --gui-' 
 
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
