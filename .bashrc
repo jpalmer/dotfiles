@@ -98,9 +98,9 @@ alias gs='git status'
 alias ga='git add .'
 #others
 alias top='htop'
-#suphys has broken matlab for some reason
+#suphys has broken matlab for some reason - also quota
 alias matlab='/opt/matlab_R2008b/bin/matlab &'
-
+alias quota='echo "" ; df -h ~ | sed /"export"/d ; echo ""'
 #calculates most used commands
 alias used='cat ~/.bash_history | sort | uniq -c | sort -n | tail'
 alias revcount='git log --oneline --all | wc -l'
