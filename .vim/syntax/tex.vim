@@ -330,7 +330,7 @@ if !exists("tex_no_math")
  call TexNewMathZone("K","xalignat",1)
  call TexNewMathZone("L","xxalignat",0)
  " Inline Math Zones: {{{2
- syn region texMathZoneN	matchgroup=Delimiter start="\\eq{"	matchgroup=Delimiter end="\}\|%stopzone\>"	keepend contains=@texMathZoneGroup
+ syn region texMathZoneN	matchgroup=Delimiter start="\\eq\s*{"	matchgroup=texStatement end="}" end="%stopzone\>"	contains=@texMathZoneGroup
  syn region texMathZoneV	matchgroup=Delimiter start="\\("	matchgroup=Delimiter end="\\)\|%stopzone\>"	keepend contains=@texMathZoneGroup
  syn region texMathZoneW	matchgroup=Delimiter start="\\\["	matchgroup=Delimiter end="\\]\|%stopzone\>"	keepend contains=@texMathZoneGroup
  syn region texMathZoneX	matchgroup=Delimiter start="\$" skip="\\\\\|\\\$" matchgroup=Delimiter end="\$" end="%stopzone\>"	contains=@texMathZoneGroup
