@@ -99,13 +99,13 @@ alias ga='git add .'
 #others
 alias top='htop'
 #suphys has broken matlab for some reason - also quota
-alias matlab='/opt/matlab_R2008b/bin/matlab &'
+alias matlab='/usr/physics/matlab2010/bin/matlab'
 alias quota='echo "" ; df -h ~ | sed /"export"/d ; echo ""'
 #calculates most used commands
 alias used='cat ~/.bash_history | sort | uniq -c | sort -n | tail'
 alias revcount='git log --oneline --all | wc -l'
 alias vi='vim' #helpful - on suphys invoking as vi reads different startup files
-
+alias gvim='xmodmap -e "clear Lock" -e "keycode 0x42 = Escape" && gvim'
 #calculates most used commands but ignores arguments
 function useds(){
 cat ~/.bash_history | awk {'print $1'} | sort | uniq -c | sort -n | tail
@@ -152,7 +152,6 @@ echo "*.aux
 #fsharp aliases - could porbably do better with some sor to of copy script
 alias fsc='mono ~/FSharp-2.0.0.0/bin/fsc.exe'
 alias fsi='mono ~/FSharp-2.0.0.0/bin/fsi.exe --readline+ --gui-' 
-
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
 # sources /etc/bash.bashrc).
