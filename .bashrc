@@ -5,7 +5,7 @@ if [ -f /etc/bashrc ]; then
 fi
 
 # add custom physics path
-export PATH=/usr/physics/bin:~/bin:/usr/local/bin:$PATH
+export PATH=~/bin:/usr/physics/bin:/usr/local/bin:$PATH
 export MANPATH=/usr/physics/man:$MANPATH
 
 # no coredumps in home
