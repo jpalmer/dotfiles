@@ -5,8 +5,8 @@ if [ -f /etc/bashrc ]; then
 fi
 
 # add custom physics path
-export PATH=~/bin:/usr/physics/bin:/usr/local/bin:$PATH
-export MANPATH=/usr/physics/man:$MANPATH
+export PATH=~/.local/bin:/usr/physics/bin:/usr/local/bin:$PATH
+export MANPATH=~/.local/man:/usr/physics/man:$MANPATH
 
 # no coredumps in home
 ulimit -S -c 0
@@ -51,9 +51,10 @@ alias chooser='cd ; /usr/bin/perl /usr/physics/bin/chooser.pl ; PRINTER=`more < 
 # If not running interactively, don't do anything
 [ -z "$PS1" ] && return
 #make mono find dlls properly
-export LD_LIBRARY_PATH=~/lib
+export LD_LIBRARY_PATH=.:~/.local/lib
 export PKG_CONFIG_PATH=~/lib/pkgconfig/
-
+export LIBRARY_PATH=~/.local/lib
+export CPATH=~/.local/include
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
 shopt -s checkwinsize
@@ -99,13 +100,16 @@ alias ga='git add .'
 #others
 alias top='htop'
 #suphys has broken matlab for some reason - also quota
-alias matlab='/usr/physics/matlab2010/bin/matlab'
+alias matlab='/usr/physics/matlab2011/bin/matlab'
 alias quota='echo "" ; df -h ~ | sed /"export"/d ; echo ""'
 #calculates most used commands
 alias used='cat ~/.bash_history | sort | uniq -c | sort -n | tail'
 alias revcount='git log --oneline --all | wc -l'
 alias vi='vim' #helpful - on suphys invoking as vi reads different startup files
 alias gvim='xmodmap -e "clear Lock" -e "keycode 0x42 = Escape" && gvim'
+alias conf='./configure --prefix=/suphys/jpal8929/.local'
+alias spell='aspell --lang=en_GB -c'
+alias movie='ffmpeg -y -f image2 -i %d.png  -vcodec huffyuv test.avi'
 #calculates most used commands but ignores arguments
 function useds(){
 cat ~/.bash_history | awk {'print $1'} | sort | uniq -c | sort -n | tail
@@ -129,7 +133,7 @@ exec evince "$1" &
 #create a skeleton latex document
 function latheader {
 echo "\documentclass{article} 
-\usepackage{amsmath} 
+\usepackage{amsmath,mypack} 
 \begin{document} 
 \author{John Palmer, SID : 308219805} 
 \title{TITLE HERE !!!} 
@@ -155,7 +159,8 @@ alias fsi='mono ~/FSharp-2.0.0.0/bin/fsi.exe --readline+ --gui-'
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
 # sources /etc/bash.bashrc).
-if [ -f ~/etc/bash_completion ] && ! shopt -oq posix; then
-    . ~/etc/bash_completion
+if [ -f ~/.local/etc/bash_completion ] && ! shopt -oq posix; then
+    . ~/.local/etc/bash_completion
 fi
 
+bind "set completion-ignore-case on"
