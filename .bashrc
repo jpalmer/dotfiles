@@ -109,7 +109,8 @@ alias vi='vim' #helpful - on suphys invoking as vi reads different startup files
 alias gvim='xmodmap -e "clear Lock" -e "keycode 0x42 = Escape" && gvim'
 alias conf='./configure --prefix=/suphys/jpal8929/.local'
 alias spell='aspell --lang=en_GB -c'
-alias movie='ffmpeg -y -f image2 -i %d.png  -vcodec huffyuv test.avi'
+alias movie='ffmpeg -y -f image2 -threads 4 -i pics/%d.png  -vcodec huffyuv test.avi'
+alias latest='evince `ls *.pdf --sort=time | head -1 `'
 #calculates most used commands but ignores arguments
 function useds(){
 cat ~/.bash_history | awk {'print $1'} | sort | uniq -c | sort -n | tail
@@ -164,3 +165,5 @@ if [ -f ~/.local/etc/bash_completion ] && ! shopt -oq posix; then
 fi
 
 bind "set completion-ignore-case on"
+[[ -f ~/.autojump/etc/profile.d/autojump.bash ]] && source ~/.autojump/etc/profile.d/autojump.bash
+
