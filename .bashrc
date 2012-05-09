@@ -110,7 +110,12 @@ alias gvim='xmodmap -e "clear Lock" -e "keycode 0x42 = Escape" && gvim'
 alias conf='./configure --prefix=/suphys/jpal8929/.local'
 alias spell='aspell --lang=en_GB -c'
 alias movie='ffmpeg -y -f image2 -threads 4 -i pics/%d.png  -vcodec huffyuv test.avi'
-alias latest='evince `ls *.pdf --sort=time | head -1 `'
+function newest()
+{
+    ls $1  --sort=time | head -1;
+}
+alias latest='evince `newest *.pdf`'
+alias edit='gvim `newest *.tex`'
 #calculates most used commands but ignores arguments
 function useds(){
 cat ~/.bash_history | awk {'print $1'} | sort | uniq -c | sort -n | tail
