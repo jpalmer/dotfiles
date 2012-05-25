@@ -52,7 +52,6 @@ alias chooser='cd ; /usr/bin/perl /usr/physics/bin/chooser.pl ; PRINTER=`more < 
 [ -z "$PS1" ] && return
 #make mono find dlls properly
 export LD_LIBRARY_PATH=.:~/.local/lib
-export PKG_CONFIG_PATH=~/lib/pkgconfig/
 export LIBRARY_PATH=~/.local/lib
 export CPATH=~/.local/include
 # check the window size after each command and, if necessary,
@@ -112,10 +111,10 @@ alias spell='aspell --lang=en_GB -c'
 alias movie='ffmpeg -y -f image2 -threads 4 -i pics/%d.png  -vcodec huffyuv test.avi'
 function newest()
 {
-    ls $1  --sort=time | head -1;
+    ls --sort=time $*  | head -1;
 }
-alias latest='evince `newest *.pdf`'
-alias edit='gvim `newest *.tex`'
+alias latest='evince `newest "*.pdf"`'
+alias edit='gvim `newest "*.tex"`'
 #calculates most used commands but ignores arguments
 function useds(){
 cat ~/.bash_history | awk {'print $1'} | sort | uniq -c | sort -n | tail
