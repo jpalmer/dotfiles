@@ -1,9 +1,33 @@
 call pathogen#infect()
 au BufRead,BufNewFile *.fs   set filetype=fsharp
 au BufRead,BufNewFile sigfile set filetype=fsharp
-set tabstop=4
+set tabstop=4 ") tabs
 set shiftwidth=4
 set expandtab
 set number
 set autoindent
 au BufRead,BufNewFile makefile set noexpandtab
+set guifont=Droid\ Sans\ Mono\ 10
+") remap keys - first part stops arrow keys, second makes j,k move by screen line rather than file line
+nnoremap ; :
+nnoremap <up> <nop>
+nnoremap <down> <nop>
+nnoremap <left> <nop>
+nnoremap <right> <nop>
+nnoremap j gj
+nnoremap k gk
+") search options
+set ignorecase
+set smartcase
+set incsearch
+set showmatch
+set hlsearch
+nnoremap <leader><space> :noh<cr>
+") in normal mode, can use tab to jump to matching bracket
+nnoremap <tab> %
+vnoremap <tab> %
+set wildmenu
+set wildmode=list:longest,full
+set cursorline
+set ttyfast
+set ruler

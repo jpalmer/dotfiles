@@ -53,7 +53,9 @@ alias chooser='cd ; /usr/bin/perl /usr/physics/bin/chooser.pl ; PRINTER=`more < 
 #make mono find dlls properly
 export LD_LIBRARY_PATH=.:~/.local/lib
 export LIBRARY_PATH=~/.local/lib
-export CPATH=~/.local/include
+#export CPATH=~/.local/include
+export PKG_CONFIG_PATH="~/.local/libs/pkgconfig:/usr/lib/pkgconfig:/usr/lib64/pkgconfig"
+
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
 shopt -s checkwinsize
@@ -86,6 +88,7 @@ alias ks='ls'
 alias ake='make'
 alias nake='make'
 alias naje='make'
+alias sl='ls'
 # some more ls aliases
 alias ll='ls -alF'
 alias la='ls -A'
@@ -111,10 +114,10 @@ alias spell='aspell --lang=en_GB -c'
 alias movie='ffmpeg -y -f image2 -threads 4 -i pics/%d.png  -vcodec huffyuv test.avi'
 function newest()
 {
-    ls --sort=time $*  | head -1;
+    ls --sort=time $* 2> /dev/null | head -1;
 }
 alias latest='evince `newest "*.pdf"`'
-alias edit='gvim `newest "*.tex"`'
+alias edit='gvim `newest "*.tex *.fs *.c"`'
 #calculates most used commands but ignores arguments
 function useds(){
 cat ~/.bash_history | awk {'print $1'} | sort | uniq -c | sort -n | tail
@@ -171,3 +174,4 @@ fi
 bind "set completion-ignore-case on"
 [[ -f ~/.autojump/etc/profile.d/autojump.bash ]] && source ~/.autojump/etc/profile.d/autojump.bash
 
+alias TA='/opt/cxoffice/bin/wine --bottle Managed_win2000 --verbose /suphys/jpal8929/enlil/t/TotalA.exe'
