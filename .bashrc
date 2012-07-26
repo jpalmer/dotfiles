@@ -109,9 +109,10 @@ alias used='cat ~/.bash_history | sort | uniq -c | sort -n | tail'
 alias revcount='git log --oneline --all | wc -l'
 alias vi='vim' #helpful - on suphys invoking as vi reads different startup files
 alias gvim='xmodmap -e "clear Lock" -e "keycode 0x42 = Escape" && gvim'
-alias conf='./configure --prefix=/suphys/jpal8929/.local'
+alias conf='./configure --prefix='`echo ~`'/.local'
 alias spell='aspell --lang=en_GB -c'
 alias movie='ffmpeg -y -f image2 -threads 4 -i pics/%d.png  -vcodec huffyuv test.avi'
+alias proxy=' ssh -C2qTnN -D 8080 aws'
 function newest()
 {
     ls --sort=time $* 2> /dev/null | head -1;
