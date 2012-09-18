@@ -47,7 +47,7 @@ alias chooser='cd ; /usr/bin/perl /usr/physics/bin/chooser.pl ; PRINTER=`more < 
 # NOTE: echo-ing anything breaks scp
 
 # USER CUSTOM SETTINGS BELOW #
-
+export PROMPT_COMMAND='echo -ne "\033]0;`hostname`\007"'
 # If not running interactively, don't do anything
 [ -z "$PS1" ] && return
 #make mono find dlls properly

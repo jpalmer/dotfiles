@@ -16,6 +16,8 @@ nnoremap <left> <nop>
 nnoremap <right> <nop>
 nnoremap j gj
 nnoremap k gk
+nnoremap <End> g<End>
+nnoremap <Home> g<Home>
 ") search options
 set ignorecase
 set smartcase
@@ -31,3 +33,5 @@ set wildmode=list:longest,full
 set cursorline
 set ttyfast
 set ruler
+map <C-V>   	"+gP
+imap <C-V>      <Esc>l"+gPi
