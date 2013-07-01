@@ -5,8 +5,7 @@ if [ -f /etc/bashrc ]; then
 fi
 
 # add custom physics path
-export PATH=~/.local/bin:/usr/physics/bin:/usr/local/bin:$PATH
-export MANPATH=~/.local/man:/usr/physics/man:$MANPATH
+#export MANPATH=~/.local/man:/usr/physics/man:$MANPATH
 
 # no coredumps in home
 ulimit -S -c 0
@@ -16,13 +15,13 @@ umask 022
 
 # disable autologout
 unset autologout 
+export EDITOR=vim
 
-# set TEX default path
-set TEXINPUTS=".:/usr/physics/tex//:"
-
+export LD_LIBRARY_PATH="."
 # set ICT proxy 
 HTTP_PROXY=http://www-cache.usyd.edu.au:8080
-
+export http_proxy="http://web-cache.usyd.edu.au:8080/"
+export https_proxy="http://web-cache.usyd.edu.au:8080/"
 # no duplicate lines in the history
 HISTCONTROL=ignoredups:ignorespace
 
@@ -34,27 +33,19 @@ HISTSIZE=100000000
 HISTFILESIZE=200000000
 
 
-# set default printer
-if [ -f ~/.default_printer ]; then
-        export PRINTER=`more < ~/.default_printer`
-        export LWPRINTER=$PRINTER
-        export LPDEST=$PRINTER
-fi
 
 # Change default printer in current shell and new shells
-alias chooser='cd ; /usr/bin/perl /usr/physics/bin/chooser.pl ; PRINTER=`more < ~/.default_printer` ; LWPRINTER=`more < ~/.default_printer` ; LPDEST=`more < ~/.default_printer` ; export PRINTER ; export LWPRINTER ; export LPDEST'
 
 # NOTE: echo-ing anything breaks scp
 
+source /etc/profile
+export PATH=/home/john/.cabal/bin:$PATH
 # USER CUSTOM SETTINGS BELOW #
-export PROMPT_COMMAND='echo -ne "\033]0;`hostname`\007"'
+#WHY DOES THIS EXIST???
+#export PROMPT_COMMAND='echo -ne "\033]0;`hostname -s`\007"'
+export PROMPT_COMMAND=''
 # If not running interactively, don't do anything
 [ -z "$PS1" ] && return
-#make mono find dlls properly
-export LD_LIBRARY_PATH=.:~/.local/lib
-export LIBRARY_PATH=~/.local/lib
-#export CPATH=~/.local/include
-export PKG_CONFIG_PATH="~/.local/libs/pkgconfig:/usr/lib/pkgconfig:/usr/lib64/pkgconfig"
 
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
@@ -113,6 +104,9 @@ alias conf='./configure --prefix='`echo ~`'/.local'
 alias spell='aspell --lang=en_GB -c'
 alias movie='ffmpeg -y -f image2 -threads 4 -i pics/%d.png  -vcodec huffyuv test.avi'
 alias proxy=' ssh -C2qTnN -D 8080 aws'
+alias ssh='ssh -Y'
+alias suphysmount='sudo -E mount -a -T /etc/fstab'
+alias makeloop='while true;do make;sleep 4;done'
 function newest()
 {
     ls --sort=time $* 2> /dev/null | head -1;
@@ -165,14 +159,14 @@ echo "*.aux
 #fsharp aliases - could porbably do better with some sor to of copy script
 alias fsc='mono ~/FSharp-2.0.0.0/bin/fsc.exe'
 alias fsi='mono ~/FSharp-2.0.0.0/bin/fsi.exe --readline+ --gui-' 
-# enable programmable completion features (you don't need to enable
-# this, if it's already enabled in /etc/bash.bashrc and /etc/profile
-# sources /etc/bash.bashrc).
-if [ -f ~/.local/etc/bash_completion ] && ! shopt -oq posix; then
-    . ~/.local/etc/bash_completion
-fi
+
+#WINE
+export WINEPREFIX=~/win32
+export WINEARCH=win32
 
 bind "set completion-ignore-case on"
 [[ -f ~/.autojump/etc/profile.d/autojump.bash ]] && source ~/.autojump/etc/profile.d/autojump.bash
-
-alias TA='/opt/cxoffice/bin/wine --bottle Managed_win2000 --verbose /suphys/jpal8929/enlil/t/TotalA.exe'
+source /usr/share/git/git-prompt.sh
+echo `sort -R ~/glados.txt | head -n 1`
+source /usr/share/doc/pkgfile/command-not-found.bash
+source /etc/profile.d/autojump.bash 
