@@ -1,10 +1,5 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =8
-let g:netrw_dirhist_1='/home/john/headnode/FROM_ENLIL/Simulations/honcriticality'
-let g:netrw_dirhist_2='/home/john/cluster'
-let g:netrw_dirhist_3='/home/john/.local/share/gnome-shell/extensions/quitbutton@azathoth92.hotmail.it'
-let g:netrw_dirhist_4='/home/john/headnode'
-let g:netrw_dirhist_5='/home/john/headnode/GetMSD'
-let g:netrw_dirhist_6='/home/john/silliac/papers/neural_comp_2012'
-let g:netrw_dirhist_7='/etc/pam.d'
-let g:netrw_dirhist_8='/home/john/BoxLib/BoxLib'
+let g:netrw_dirhist_cnt =3
+let g:netrw_dirhist_1='/home/john/headnode'
+let g:netrw_dirhist_2='/home/john/headnode/scratch'
+let g:netrw_dirhist_3='/home/john/headnode/scratch/Hippocampusdecay'
