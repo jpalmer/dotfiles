@@ -16,8 +16,8 @@ umask 022
 # disable autologout
 unset autologout 
 export EDITOR=vim
-
-export LD_LIBRARY_PATH="."
+export PATH=~/.local/bin:$PATH
+export LD_LIBRARY_PATH=".:!/.local/lib"
 # set ICT proxy 
 HTTP_PROXY=http://www-cache.usyd.edu.au:8080
 export http_proxy="http://web-cache.usyd.edu.au:8080/"
@@ -165,8 +165,10 @@ export WINEPREFIX=~/win32
 export WINEARCH=win32
 
 bind "set completion-ignore-case on"
-[[ -f ~/.autojump/etc/profile.d/autojump.bash ]] && source ~/.autojump/etc/profile.d/autojump.bash
-source /usr/share/git/git-prompt.sh
-echo `sort -R ~/glados.txt | head -n 1`
-source /usr/share/doc/pkgfile/command-not-found.bash
-source /etc/profile.d/autojump.bash 
+[[ -f ~/.autojump/etc/profile.d/autojump.bash ]]            && source ~/.autojump/etc/profile.d/autojump.bash
+[[ -f /etc/profile.d/autojump.bash ]]                       && source /etc/profile.d/autojump.bash 
+[[ -f /usr/share/git/git-promp.sh  ]]                       && source /usr/share/git/git-prompt.sh
+[[ -f ~/.local/etc/bash_completion.d/git-completion.bash ]] && source ~/.local/etc/bash_completion.d/git-completion.bash
+[[ -f ~/glados.txt ]]                                       && echo `sort -R ~/glados.txt | head -n 1`
+[[ -f /usr/share/doc/pkgfile/command-not-found.bash ]]      && source /usr/share/doc/pkgfile/command-not-found.bash
+[[ -f ~/dotfiles/`hostname -s` ]]                                    && source ~/dotfiles/`hostname -s`
