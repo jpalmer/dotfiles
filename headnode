@@ -1,0 +1,4 @@
+source /usr/physics/Modules/3.2.8/init/bash
+alias module='/usr/physics/Modules/3.2.8/bin/modulecmd bash'
+eval `module load PBS`
+export PATH=$PATH:/usr/physics/bin
