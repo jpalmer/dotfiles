@@ -19,8 +19,8 @@ myLayout = tiled ||| Full
 
      -- Percent of screen to increment by when resizing panes
      delta   = 6/100
-myManageHook :: ManageHook
-myManageHook=composeAll [className=?"com-mathworks-util-PostVMInit" --> doFloat]
+--myManageHook :: ManageHook
+-- myManageHook=composeAll [className=?"com-mathworks-util-PostVMInit" --> doFloat]
 modm=mod4Mask
 toggleStrutsKey arg = (modm,xK_b)
 
@@ -137,7 +137,7 @@ myconfig =  defaultConfig {
      , startupHook      = setWMName "LG3D"   --magic hack for matlab
      , logHook          = updatePointer (Relative 0.5 0.5) --pointer follows focur
      , layoutHook       = myLayout
-     , manageHook       = myManageHook 
+--     , manageHook       = myManageHook 
      , keys             = mykeys   
      , mouseBindings    = myMouseBindings}
   --   `additionalKeys` --use yeganesh instead of dmenu - automatically sorts entries based on usage which is quite nice

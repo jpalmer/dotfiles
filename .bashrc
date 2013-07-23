@@ -112,7 +112,7 @@ function newest()
     ls --sort=time $* 2> /dev/null | head -1;
 }
 alias latest='evince `newest "*.pdf"`'
-alias edit='gvim `newest "*.tex *.fs *.c"`'
+alias edit='$EDITOR `newest "*.tex *.fs *.c"`'
 #calculates most used commands but ignores arguments
 function useds(){
 cat ~/.bash_history | awk {'print $1'} | sort | uniq -c | sort -n | tail
