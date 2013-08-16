@@ -1,0 +1,2 @@
+xterm*saveLines: 4096
+xterm*faceName: consolas:size=10

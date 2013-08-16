@@ -1,0 +1,7 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =5
+let g:netrw_dirhist_1='/home/john/headnode'
+let g:netrw_dirhist_2='/home/john/headnode/scratch'
+let g:netrw_dirhist_3='/home/john/headnode/scratch/Hippocampusdecay'
+let g:netrw_dirhist_4='/home/john/yossarian'
+let g:netrw_dirhist_5='/home/john/.xmonad'

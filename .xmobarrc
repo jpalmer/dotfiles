@@ -1,0 +1,17 @@
+Config { font = "xft:Bitstream Vera Sans Mono:size=8:antialias=true"
+       , bgColor = "black"
+       , fgColor = "grey"
+       , position = Top
+       , lowerOnStart = True
+       , commands = [ Run Network "eth0" ["-t","<fc=green>Net:</fc><rx>|<tx>KB/s"] 10
+                    , Run Cpu ["-t","<fc=green>CPU:</fc><total>%"] 10
+                    , Run Memory ["-t","<fc=green>Mem:</fc><usedratio>%"] 10
+                    , Run Swap ["-t","<fc=green>Swap:</fc><usedratio>%"] 10
+                    , Run Com "uname" ["-s","-r"] "" 36000
+                    , Run Date "%a %b %_d %Y %H:%M:%S" "date" 10
+                    , Run DiskU [("/","<fc=green>/:</fc><used>/<size>"),("/home","<fc=green>Home:</fc><used>/<size>")] [] 10
+                    ]
+       , sepChar = "%"
+       , alignSep = "}{"
+       , template = "%cpu% %memory% %swap% %eth0% <fc=green>Disks </fc>%disku% }{ <fc=green>%date%</fc>| %uname%"
+       }
