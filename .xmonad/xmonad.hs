@@ -27,6 +27,7 @@ toggleStrutsKey arg = (modm,xK_b)
 mykeys conf@arg =M.fromList $ [ 
        ((modm, xK_p)                  , spawn "exe=`dmenu_path_c | /home/john/.cabal/bin/yeganesh` && eval \"exec $exe\"")
     , ((modm .|. shiftMask, xK_Return), spawn "xterm" )
+    , ((modm .|. controlMask, xK_Return), spawn "xterm -bg gray -e ssh -Y headnode" )
 
     -- close focused window
     , ((modm .|. shiftMask, xK_c     ), kill)
@@ -130,16 +131,19 @@ myMouseBindings (XConfig {XMonad.modMask = modm}) = M.fromList $
     -- you may also bind events to the mouse scroll wheel (button4 and button5)
     ]
 
-
+myNormalBorderColor  = "#000000" --black
+myFocusedBorderColor = "#ff0000" --red
 myconfig =  defaultConfig {
       modMask           = mod4Mask           --winkey is magic
-     , borderWidth      = 2                  --border size
+     , borderWidth      = 1                  --border size
      , startupHook      = setWMName "LG3D"   --magic hack for matlab
      , logHook          = updatePointer (Relative 0.5 0.5) --pointer follows focur
      , layoutHook       = myLayout
 --     , manageHook       = myManageHook 
      , keys             = mykeys   
-     , mouseBindings    = myMouseBindings}
+     , mouseBindings    = myMouseBindings
+     , normalBorderColor= myNormalBorderColor
+     , focusedBorderColor= myFocusedBorderColor}
   --   `additionalKeys` --use yeganesh instead of dmenu - automatically sorts entries based on usage which is quite nice
      
 main =

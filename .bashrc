@@ -16,7 +16,7 @@ umask 022
 # disable autologout
 unset autologout 
 export EDITOR=vim
-export PATH=~/.local/bin:$PATH
+export PATH=~/.local/bin:~/.local/sbin:~/.cabal/bin:$PATH:/torque/bin:/torque/sbin
 export LD_LIBRARY_PATH=".:${HOME}/.local/lib"
 # set ICT proxy 
 HTTP_PROXY=http://www-cache.usyd.edu.au:8080
@@ -38,8 +38,6 @@ HISTFILESIZE=200000000
 
 # NOTE: echo-ing anything breaks scp
 
-source /etc/profile
-export PATH=/home/john/.cabal/bin:$PATH
 # USER CUSTOM SETTINGS BELOW #
 #WHY DOES THIS EXIST???
 #export PROMPT_COMMAND='echo -ne "\033]0;`hostname -s`\007"'
@@ -60,7 +58,7 @@ case "$TERM" in
 esac
 
 #not sure what any of the escape codes do - important bit is the __git_ps1 to show branch 
-export PS1='\[\033[01;32m\]\h\[\033[01;34m\] \w\[\033[31m\]$(__git_ps1 " %s") \[\033[01;34m\]$\[\033[00m\] '
+export PS1='\[\033[01;32m\]\h\[\033[01;34m\] \w\[\033[31m\]$(__git_ps1 " %s") \[\033[01;34m\]\$\[\033[00m\] '
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
