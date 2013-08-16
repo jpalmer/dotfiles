@@ -35,3 +35,4 @@ set ttyfast
 set ruler
 map <C-V>   	"+gP
 imap <C-V>      <Esc>l"+gPi
+set mouse=a

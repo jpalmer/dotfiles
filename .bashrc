@@ -3,7 +3,10 @@
 if [ -f /etc/bashrc ]; then
         . /etc/bashrc   
 fi
-
+if [ "$TERM" = rxvt-unicode-256color ]
+then
+    export TERM=rxvt
+fi
 # add custom physics path
 export PATH=~/.local/bin:/usr/physics/bin:/usr/local/bin:$PATH
 export MANPATH=~/.local/man:/usr/physics/man:$MANPATH
@@ -21,7 +24,8 @@ unset autologout
 set TEXINPUTS=".:/usr/physics/tex//:"
 
 # set ICT proxy 
-HTTP_PROXY=http://www-cache.usyd.edu.au:8080
+export HTTP_PROXY=http://www-cache.usyd.edu.au:8080
+export http_proxy=http://www-cache.usyd.edu.au:8080
 
 # no duplicate lines in the history
 HISTCONTROL=ignoredups:ignorespace
@@ -47,14 +51,15 @@ alias chooser='cd ; /usr/bin/perl /usr/physics/bin/chooser.pl ; PRINTER=`more < 
 # NOTE: echo-ing anything breaks scp
 
 # USER CUSTOM SETTINGS BELOW #
-export PROMPT_COMMAND='echo -ne "\033]0;`hostname`\007"'
+export PROMPT_COMMAND='echo -ne "\033]0;`hostname -s`\007"'
 # If not running interactively, don't do anything
 [ -z "$PS1" ] && return
 #make mono find dlls properly
 export LD_LIBRARY_PATH=.:~/.local/lib
+export LD_RUN_PATH=.:~/.local/lib
 export LIBRARY_PATH=~/.local/lib
-#export CPATH=~/.local/include
-export PKG_CONFIG_PATH="~/.local/libs/pkgconfig:/usr/lib/pkgconfig:/usr/lib64/pkgconfig"
+export CPATH=~/.local/include
+export PKG_CONFIG_PATH="/suphys/jpal8929/.local/lib/pkgconfig:/usr/lib/pkgconfig:/usr/lib64/pkgconfig"
 
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
@@ -68,8 +73,16 @@ case "$TERM" in
     xterm-color) color_prompt=yes;;
 esac
 
+bg="$(tput setab 3)"
+red="$(tput setaf 1)"
+blue="$(tput setaf 4)"
+reset="$(tput sgr0)"
+export PS1='\[$reset$bg\]'"\h"'\[$red\]'" \w "'\[$blue\] $(__git_ps1 "%s") \[$reset\]$'
+
+
+
 #not sure what any of the escape codes do - important bit is the __git_ps1 to show branch 
-export PS1='\[\033[01;32m\]\h\[\033[01;34m\] \w\[\033[31m\]$(__git_ps1 " %s") \[\033[01;34m\]$\[\033[00m\] '
+#export PS1='\[$(tput setab 6)\]\[\033[01;32m\]\h\[\033[01;34m\] \w\[\033[31m\]$(__git_ps1 " %s") \[\033[01;34m\]$\[\033[00m\] '
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
@@ -113,6 +126,7 @@ alias conf='./configure --prefix='`echo ~`'/.local'
 alias spell='aspell --lang=en_GB -c'
 alias movie='ffmpeg -y -f image2 -threads 4 -i pics/%d.png  -vcodec huffyuv test.avi'
 alias proxy=' ssh -C2qTnN -D 8080 aws'
+alias makeloop='while true;do make;sleep 4;done'
 function newest()
 {
     ls --sort=time $* 2> /dev/null | head -1;
@@ -175,4 +189,3 @@ fi
 bind "set completion-ignore-case on"
 [[ -f ~/.autojump/etc/profile.d/autojump.bash ]] && source ~/.autojump/etc/profile.d/autojump.bash
 
-alias TA='/opt/cxoffice/bin/wine --bottle Managed_win2000 --verbose /suphys/jpal8929/enlil/t/TotalA.exe'
