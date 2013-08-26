@@ -3,7 +3,10 @@
 if [ -f /etc/bashrc ]; then
         . /etc/bashrc   
 fi
-
+if [ "$TERM" = rxvt-unicode-256color ]
+then
+    export TERM=rxvt
+fi
 # add custom physics path
 #export MANPATH=~/.local/man:/usr/physics/man:$MANPATH
 
@@ -16,13 +19,13 @@ umask 022
 # disable autologout
 unset autologout 
 export EDITOR=vim
-export PATH=~/.local/bin:$PATH
+export PATH=~/.local/bin:~/.local/sbin:~/.cabal/bin:$PATH:/torque/bin:/torque/sbin
 export LD_LIBRARY_PATH=".:${HOME}/.local/lib"
 export PKG_CONFIG_PATH=~/.local/lib/pkgconfig
 # set ICT proxy 
-HTTP_PROXY=http://www-cache.usyd.edu.au:8080
-export http_proxy="http://web-cache.usyd.edu.au:8080/"
-export https_proxy="http://web-cache.usyd.edu.au:8080/"
+export HTTP_PROXY=http://www-cache.usyd.edu.au:8080
+export http_proxy=http://www-cache.usyd.edu.au:8080
+
 # no duplicate lines in the history
 HISTCONTROL=ignoredups:ignorespace
 
@@ -39,11 +42,13 @@ HISTFILESIZE=200000000
 
 # NOTE: echo-ing anything breaks scp
 
-source /etc/profile
-export PATH=/home/john/.cabal/bin:$PATH
 # USER CUSTOM SETTINGS BELOW #
-#WHY DOES THIS EXIST???
-#export PROMPT_COMMAND='echo -ne "\033]0;`hostname -s`\007"'
+#make mono find dlls properly
+export LD_LIBRARY_PATH=.:~/.local/lib
+export LD_RUN_PATH=.:~/.local/lib
+export LIBRARY_PATH=~/.local/lib
+export CPATH=~/.local/include
+export PKG_CONFIG_PATH="/suphys/jpal8929/.local/lib/pkgconfig:/usr/lib/pkgconfig:/usr/lib64/pkgconfig"
 export PROMPT_COMMAND=''
 # If not running interactively, don't do anything
 [ -z "$PS1" ] && return
@@ -60,8 +65,15 @@ case "$TERM" in
     xterm-color) color_prompt=yes;;
 esac
 
+bg="$(tput setab 3)"
+red="$(tput setaf 1)"
+blue="$(tput setaf 4)"
+reset="$(tput sgr0)"
+export PS1='\[$reset$bg\]'"\h"'\[$red\]'" \w "'\[$blue\] $(__git_ps1 "%s") \[$reset\]\$'
+
+
+
 #not sure what any of the escape codes do - important bit is the __git_ps1 to show branch 
-export PS1='\[\033[01;32m\]\h\[\033[01;34m\] \w\[\033[31m\]$(__git_ps1 " %s") \[\033[01;34m\]$\[\033[00m\] '
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
@@ -168,7 +180,7 @@ export WINEARCH=win32
 bind "set completion-ignore-case on"
 [[ -f ~/.autojump/etc/profile.d/autojump.bash ]]            && source ~/.autojump/etc/profile.d/autojump.bash
 [[ -f /etc/profile.d/autojump.bash ]]                       && source /etc/profile.d/autojump.bash 
-[[ -f /usr/share/git/git-promp.sh  ]]                       && source /usr/share/git/git-prompt.sh
+[[ -f /usr/share/git/git-prompt.sh  ]]                       && source /usr/share/git/git-prompt.sh
 [[ -f ~/.local/etc/bash_completion.d/git-completion.bash ]] && source ~/.local/etc/bash_completion.d/git-completion.bash
 [[ -f ~/glados.txt ]]                                       && echo `sort -R ~/glados.txt | head -n 1`
 [[ -f /usr/share/doc/pkgfile/command-not-found.bash ]]      && source /usr/share/doc/pkgfile/command-not-found.bash
