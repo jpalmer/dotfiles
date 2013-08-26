@@ -133,7 +133,7 @@ myMouseBindings (XConfig {XMonad.modMask = modm}) = M.fromList $
 
 myconfig =  defaultConfig {
       modMask           = mod4Mask           --winkey is magic
-     , borderWidth      = 2                  --border size
+     , borderWidth      = 1                  --border size
      , startupHook      = setWMName "LG3D"   --magic hack for matlab
      , logHook          = updatePointer (Relative 0.5 0.5) --pointer follows focur
      , layoutHook       = myLayout

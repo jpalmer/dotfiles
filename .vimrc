@@ -1,5 +1,8 @@
 "au BufRead,BufNewFile *.fs   set filetype=fsharp
 "au BufRead,BufNewFile sigfile set filetype=fsharp
+execute pathogen#infect()
+syntax on
+filetype plugin indent on
 set tabstop=4 ") tabs
 set shiftwidth=4
 set number

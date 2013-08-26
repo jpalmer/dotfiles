@@ -18,6 +18,7 @@ unset autologout
 export EDITOR=vim
 export PATH=~/.local/bin:$PATH
 export LD_LIBRARY_PATH=".:${HOME}/.local/lib"
+export PKG_CONFIG_PATH=~/.local/lib/pkgconfig
 # set ICT proxy 
 HTTP_PROXY=http://www-cache.usyd.edu.au:8080
 export http_proxy="http://web-cache.usyd.edu.au:8080/"
