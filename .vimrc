@@ -39,10 +39,7 @@ set ruler
 map <C-V>   	"+gP
 imap <C-V>      <Esc>l"+gPi
 set mouse=a
-<<<<<<< HEAD
-=======
 ""get nice error window when running make
 autocmd QuickFixCmdPost [^l]* nested cwindow
 autocmd QuickFixCmdPost    l* nested lwindow
 cabbrev make make!
->>>>>>> 1909def5f640bdfc862d5344b0c13ea7d7ad34ce
