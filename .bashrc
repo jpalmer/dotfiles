@@ -21,6 +21,7 @@ unset autologout
 export EDITOR=vim
 export PATH=~/.local/bin:~/.local/sbin:~/.cabal/bin:$PATH:/torque/bin:/torque/sbin
 export LD_LIBRARY_PATH=".:${HOME}/.local/lib"
+export PKG_CONFIG_PATH=~/.local/lib/pkgconfig
 # set ICT proxy 
 export HTTP_PROXY=http://www-cache.usyd.edu.au:8080
 export http_proxy=http://www-cache.usyd.edu.au:8080
@@ -36,6 +37,7 @@ HISTSIZE=100000000
 HISTFILESIZE=200000000
 
 
+[[ -f ~/dotfiles/`hostname -s` ]]                                    && source ~/dotfiles/`hostname -s`
 
 # Change default printer in current shell and new shells
 
@@ -183,4 +185,3 @@ bind "set completion-ignore-case on"
 [[ -f ~/.local/etc/bash_completion.d/git-completion.bash ]] && source ~/.local/etc/bash_completion.d/git-completion.bash
 [[ -f ~/glados.txt ]]                                       && echo `sort -R ~/glados.txt | head -n 1`
 [[ -f /usr/share/doc/pkgfile/command-not-found.bash ]]      && source /usr/share/doc/pkgfile/command-not-found.bash
-[[ -f ~/dotfiles/`hostname -s` ]]                                    && source ~/dotfiles/`hostname -s`
