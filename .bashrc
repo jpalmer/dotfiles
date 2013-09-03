@@ -69,7 +69,8 @@ bg="$(tput setab 3)"
 red="$(tput setaf 1)"
 blue="$(tput setaf 4)"
 reset="$(tput sgr0)"
-export PS1='\[$reset$bg\]'"\h"'\[$red\]'" \w "'\[$blue\] $(__git_ps1 "%s") \[$reset\]\$'
+ps1prefix=""
+export PS1='$ps1prefix\[$reset$bg\]'"\h"'\[$red\]'" \w "'\[$blue\] $(__git_ps1 "%s") \[$reset\]\$'
 
 
 

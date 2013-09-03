@@ -2,3 +2,8 @@ source /usr/physics/Modules/3.2.8/init/bash
 alias module='/usr/physics/Modules/3.2.8/bin/modulecmd bash'
 eval `module load PBS`
 export PATH=$PATH:/usr/physics/bin
+bg="$(tput setab 1)"
+red="$(tput setaf 2)"
+alias matlab='echo DO NOT DO THIS OR SEB WILL GET ANGRY'
+ps1prefix="$red""YOU ARE CONNECTED TO HEADNODE - DON'T DO ANYTHING SILLY
+"
