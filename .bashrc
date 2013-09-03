@@ -37,7 +37,7 @@ HISTSIZE=100000000
 HISTFILESIZE=200000000
 
 
-[[ -f ~/dotfiles/`hostname -s` ]]                                    && source ~/dotfiles/`hostname -s`
+
 
 # Change default printer in current shell and new shells
 
@@ -52,7 +52,7 @@ export CPATH=~/.local/include
 export PKG_CONFIG_PATH="/suphys/jpal8929/.local/lib/pkgconfig:/usr/lib/pkgconfig:/usr/lib64/pkgconfig"
 export PROMPT_COMMAND=''
 # If not running interactively, don't do anything
-[ -z "$PS1" ] && return
+[ -z "$PS1" ] && (( [[ -f ~/dotfiles/`hostname -s` ]]                                    && source ~/dotfiles/`hostname -s`);return)
 
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
@@ -72,7 +72,7 @@ blue="$(tput setaf 4)"
 reset="$(tput sgr0)"
 ps1prefix=""
 export PS1='$ps1prefix\[$reset$bg\]'"\h"'\[$red\]'" \w "'\[$blue\] $(__git_ps1 "%s") \[$reset\]\$'
-
+[[ -f ~/dotfiles/`hostname -s` ]]                                    && source ~/dotfiles/`hostname -s`
 
 
 #not sure what any of the escape codes do - important bit is the __git_ps1 to show branch 
