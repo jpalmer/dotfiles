@@ -3,7 +3,10 @@
 if [ -f /etc/bashrc ]; then
         . /etc/bashrc   
 fi
-
+if [ "$TERM" = rxvt-unicode-256color ]
+then
+    export TERM=rxvt
+fi
 # add custom physics path
 #export MANPATH=~/.local/man:/usr/physics/man:$MANPATH
 
@@ -18,6 +21,7 @@ unset autologout
 export EDITOR=vim
 export PATH=~/.local/bin:~/.local/sbin:~/.cabal/bin:$PATH:/torque/bin:/torque/sbin
 export LD_LIBRARY_PATH=".:${HOME}/.local/lib"
+export PKG_CONFIG_PATH=~/.local/lib/pkgconfig
 # set ICT proxy 
 HTTP_PROXY=http://web-cache.usyd.edu.au:8080
 export http_proxy=$HTTP_PROXY
@@ -35,16 +39,21 @@ HISTFILESIZE=200000000
 
 
 
+
 # Change default printer in current shell and new shells
 
 # NOTE: echo-ing anything breaks scp
 
 # USER CUSTOM SETTINGS BELOW #
-#WHY DOES THIS EXIST???
-#export PROMPT_COMMAND='echo -ne "\033]0;`hostname -s`\007"'
+#make mono find dlls properly
+export LD_LIBRARY_PATH=.:~/.local/lib
+export LD_RUN_PATH=.:~/.local/lib
+export LIBRARY_PATH=~/.local/lib
+export CPATH=~/.local/include
+export PKG_CONFIG_PATH="/suphys/jpal8929/.local/lib/pkgconfig:/usr/lib/pkgconfig:/usr/lib64/pkgconfig"
 export PROMPT_COMMAND=''
 # If not running interactively, don't do anything
-[ -z "$PS1" ] && return
+[ -z "$PS1" ] && (( [[ -f ~/dotfiles/`hostname -s` ]]                                    && source ~/dotfiles/`hostname -s`);return)
 
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
@@ -58,8 +67,16 @@ case "$TERM" in
     xterm-color) color_prompt=yes;;
 esac
 
+bg="$(tput setab 3)"
+red="$(tput setaf 1)"
+blue="$(tput setaf 4)"
+reset="$(tput sgr0)"
+ps1prefix=""
+export PS1='$ps1prefix\[$reset$bg\]'"\h"'\[$red\]'" \w "'\[$blue\] $(__git_ps1 "%s") \[$reset\]\$'
+[[ -f ~/dotfiles/`hostname -s` ]]                                    && source ~/dotfiles/`hostname -s`
+
+
 #not sure what any of the escape codes do - important bit is the __git_ps1 to show branch 
-export PS1='\[\033[01;32m\]\h\[\033[01;34m\] \w\[\033[31m\]$(__git_ps1 " %s") \[\033[01;34m\]\$\[\033[00m\] '
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
@@ -170,4 +187,3 @@ bind "set completion-ignore-case on"
 [[ -f ~/.local/etc/bash_completion.d/git-completion.bash ]] && source ~/.local/etc/bash_completion.d/git-completion.bash
 [[ -f ~/glados.txt ]]                                       && echo `sort -R ~/glados.txt | head -n 1`
 [[ -f /usr/share/doc/pkgfile/command-not-found.bash ]]      && source /usr/share/doc/pkgfile/command-not-found.bash
-[[ -f ~/dotfiles/`hostname -s` ]]                                    && source ~/dotfiles/`hostname -s`

@@ -1,3 +1,4 @@
+export bg=""
 export C_INCLUDE_PATH=/torque/include
 export LD_LIBRARY_PATH=/torque/lib:$LD_LIBRARY_PATH
 export LIBRARY_PATH=/torque/lib:$LIBRARY_PATH
