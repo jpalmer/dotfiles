@@ -2,3 +2,4 @@ export C_INCLUDE_PATH=/torque/include
 export LD_LIBRARY_PATH=/torque/lib:$LD_LIBRARY_PATH
 export LIBRARY_PATH=/torque/lib:$LIBRARY_PATH
 export LIBRARY_PATH=/usr/lib/zsh/5.0.2/zsh:$LIBRARY_PATH
+alias matlab='/usr/local/MATLAB/R2013a/bin/matlab -desktop'
