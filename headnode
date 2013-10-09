@@ -7,3 +7,4 @@ red="$(tput setaf 2)"
 alias matlab='echo DO NOT DO THIS OR SEB WILL GET ANGRY'
 ps1prefix="YOU ARE CONNECTED TO HEADNODE - DON'T DO ANYTHING SILLY
 "
+ps1postfix="qtop --brief"

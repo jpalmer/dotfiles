@@ -52,7 +52,7 @@ export CPATH=~/.local/include
 export PKG_CONFIG_PATH="/suphys/jpal8929/.local/lib/pkgconfig:/usr/lib/pkgconfig:/usr/lib64/pkgconfig"
 export PROMPT_COMMAND=''
 # If not running interactively, don't do anything
-[ -z "$PS1" ] && (( [[ -f ~/dotfiles/`hostname -s` ]]                                    && source ~/dotfiles/`hostname -s`);return)
+[ -z "$PS1" ] && return
 
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
@@ -71,7 +71,8 @@ red="$(tput setaf 1)"
 blue="$(tput setaf 4)"
 reset="$(tput sgr0)"
 ps1prefix=""
-export PS1='$ps1prefix\[$reset$bg\]'"\h"'\[$red\]'" \w "'\[$blue\] $(__git_ps1 "%s") \[$reset\]\$'
+ps1postfix=""
+export PS1='$ps1prefix\[$reset$bg\]'"\h"'\[$red\]'" \w "'\[$blue\] $(__git_ps1 "%s") $($ps1postfix) \[$reset\]\$'
 [[ -f ~/dotfiles/`hostname -s` ]]                                    && source ~/dotfiles/`hostname -s`
 
 
@@ -108,7 +109,6 @@ alias ga='git add .'
 #others
 alias top='htop'
 #suphys has broken matlab for some reason - also quota
-alias matlab='/usr/physics/matlab2011/bin/matlab'
 alias quota='echo "" ; df -h ~ | sed /"export"/d ; echo ""'
 #calculates most used commands
 alias used='cat ~/.bash_history | sort | uniq -c | sort -n | tail'
