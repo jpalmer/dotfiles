@@ -23,9 +23,10 @@ export PATH=~/.local/bin:~/.local/sbin:~/.cabal/bin:$PATH:/torque/bin:/torque/sb
 export LD_LIBRARY_PATH=".:${HOME}/.local/lib"
 export PKG_CONFIG_PATH=~/.local/lib/pkgconfig
 # set ICT proxy 
-export HTTP_PROXY=http://www-cache.usyd.edu.au:8080
-export http_proxy=http://www-cache.usyd.edu.au:8080
-
+HTTP_PROXY=http://web-cache.usyd.edu.au:8080
+export http_proxy=$HTTP_PROXY
+export https_proxy=$HTTP_PROXY
+export all_proxy=$HTTP_PROXY
 # no duplicate lines in the history
 HISTCONTROL=ignoredups:ignorespace
 
