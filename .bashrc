@@ -25,8 +25,10 @@ export PKG_CONFIG_PATH=~/.local/lib/pkgconfig
 # set ICT proxy 
 HTTP_PROXY=http://web-cache.usyd.edu.au:8080
 export http_proxy=$HTTP_PROXY
+export HTTPS_PROXY=$HTTP_PROXY
 export https_proxy=$HTTP_PROXY
 export all_proxy=$HTTP_PROXY
+export ALL_PROXY=$HTTP_PROXY
 # no duplicate lines in the history
 HISTCONTROL=ignoredups:ignorespace
 
@@ -73,6 +75,7 @@ blue="$(tput setaf 4)"
 reset="$(tput sgr0)"
 ps1prefix=""
 export PS1='$ps1prefix\[$reset$bg\]'"\h"'\[$red\]'" \w "'\[$blue\] $(__git_ps1 "%s") \[$reset\]\$'
+alias matlab='/usr/physics/matlab2011/bin/matlab'
 [[ -f ~/dotfiles/`hostname -s` ]]                                    && source ~/dotfiles/`hostname -s`
 
 
@@ -109,7 +112,6 @@ alias ga='git add .'
 #others
 alias top='htop'
 #suphys has broken matlab for some reason - also quota
-alias matlab='/usr/physics/matlab2011/bin/matlab'
 alias quota='echo "" ; df -h ~ | sed /"export"/d ; echo ""'
 #calculates most used commands
 alias used='cat ~/.bash_history | sort | uniq -c | sort -n | tail'
@@ -123,6 +125,7 @@ alias proxy=' ssh -C2qTnN -D 8080 aws'
 alias ssh='ssh -Y'
 alias suphysmount='sudo -E mount -a -T /etc/fstab'
 alias makeloop='while true;do make;sleep 4;done'
+alias feh='feh -d' #get filenames
 function newest()
 {
     ls --sort=time $* 2> /dev/null | head -1;
