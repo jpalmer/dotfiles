@@ -19,7 +19,7 @@ umask 022
 # disable autologout
 unset autologout 
 export EDITOR=vim
-export PATH=~/.local/bin:~/.local/sbin:~/.cabal/bin:$PATH:/torque/bin:/torque/sbin
+export PATH=~/.local/bin:~/.local/sbin:~/.cabal/bin:$PATH:/torque/bin:/torque/sbin:/usr/physics/bin
 export LD_LIBRARY_PATH=".:${HOME}/.local/lib"
 export PKG_CONFIG_PATH=~/.local/lib/pkgconfig
 # set ICT proxy 
