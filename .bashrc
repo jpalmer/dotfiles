@@ -25,8 +25,10 @@ export PKG_CONFIG_PATH=~/.local/lib/pkgconfig
 # set ICT proxy 
 HTTP_PROXY=http://web-cache.usyd.edu.au:8080
 export http_proxy=$HTTP_PROXY
+export HTTPS_PROXY=$HTTP_PROXY
 export https_proxy=$HTTP_PROXY
 export all_proxy=$HTTP_PROXY
+export ALL_PROXY=$HTTP_PROXY
 # no duplicate lines in the history
 HISTCONTROL=ignoredups:ignorespace
 
@@ -72,8 +74,13 @@ red="$(tput setaf 1)"
 blue="$(tput setaf 4)"
 reset="$(tput sgr0)"
 ps1prefix=""
+<<<<<<< HEAD
 ps1postfix=""
 export PS1='$ps1prefix\[$reset$bg\]'"\h"'\[$red\]'" \w "'\[$blue\] $(__git_ps1 "%s") $($ps1postfix) \[$reset\]\$'
+=======
+export PS1='$ps1prefix\[$reset$bg\]'"\h"'\[$red\]'" \w "'\[$blue\] $(__git_ps1 "%s") \[$reset\]\$'
+alias matlab='/usr/physics/matlab2011/bin/matlab'
+>>>>>>> 36e9d96460fd0d036126957b33fd6a07efcff2f4
 [[ -f ~/dotfiles/`hostname -s` ]]                                    && source ~/dotfiles/`hostname -s`
 
 
@@ -123,6 +130,7 @@ alias proxy=' ssh -C2qTnN -D 8080 aws'
 alias ssh='ssh -Y'
 alias suphysmount='sudo -E mount -a -T /etc/fstab'
 alias makeloop='while true;do make;sleep 4;done'
+alias feh='feh -d' #get filenames
 function newest()
 {
     ls --sort=time $* 2> /dev/null | head -1;

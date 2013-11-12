@@ -21,6 +21,7 @@ nnoremap j gj
 nnoremap k gk
 nnoremap <End> g<End>
 nnoremap <Home> g<Home>
+nmap <F8> :TagbarToggle<CR>
 ") search options
 set ignorecase
 set smartcase
