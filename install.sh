@@ -1,7 +1,7 @@
 #!/bin/sh
 #assumes that the repo is in ~/dotfiles
 #first remove the old files
-files=".Xdefaults .bashrc .vim .vimrc .xinitrc .xmobarrc .xmonad"
+files=`find . -maxdepth 1 -name ".?*" -printf " %f"`
 mydir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 for x in $files 
 do 

@@ -4,9 +4,10 @@ import XMonad.Hooks.SetWMName --to make matlab work
 import XMonad.Actions.UpdatePointer --mouse follows focum
 import XMonad.Hooks.ManageDocks --struts (xmobar)
 import XMonad.Hooks.DynamicLog --xmobar
+import XMonad.Util.Run --safespawn
 import qualified Data.Map as M --for keys konfig
 import qualified XMonad.StackSet as W -- various window manipulations
-myLayout = tiled ||| Full
+myLayout = avoidStruts $ tiled ||| Full
   where
      -- default tiling algorithm partitions the screen into two panes
      tiled   = Tall nmaster delta ratio
@@ -81,7 +82,7 @@ mykeys conf@arg =M.fromList $ [
     -- Use this binding with avoidStruts from Hooks.ManageDocks.
     -- See also the statusBar function from Hooks.DynamicLog.
     --
-    -- , ((modm              , xK_b     ), sendMessage ToggleStruts)
+     , ((modm              , xK_b     ), sendMessage ToggleStruts)
 
     -- Quit xmonad
     , ((modm .|. shiftMask, xK_q     ), io (exitWith ExitSuccess))
@@ -146,5 +147,7 @@ myconfig =  defaultConfig {
      , focusedBorderColor= myFocusedBorderColor}
   --   `additionalKeys` --use yeganesh instead of dmenu - automatically sorts entries based on usage which is quite nice
      
-main =
-    xmonad =<< statusBar "" xmobarPP{ppOutput= \s->return()} toggleStrutsKey  myconfig
+main =do
+    safeSpawnProg "/home/john/dzscr.sh"
+    xmonad $ myconfig
+  --  xmonad =<< statusBar "" xmobarPP{ppOutput= \s->return()} toggleStrutsKey  myconfig
