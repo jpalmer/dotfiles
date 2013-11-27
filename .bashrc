@@ -76,7 +76,6 @@ reset="$(tput sgr0)"
 ps1prefix=""
 ps1postfix=""
 export PS1='$ps1prefix\[$reset$bg\]'"\h"'\[$red\]'" \w "'\[$blue\] $(__git_ps1 "%s") $($ps1postfix) \[$reset\]\$'
-alias matlab='/usr/physics/matlab2011/bin/matlab'
 [[ -f ~/dotfiles/`hostname -s` ]]                                    && source ~/dotfiles/`hostname -s`
 
 
@@ -112,7 +111,6 @@ alias gs='git status'
 alias ga='git add .'
 #others
 alias top='htop'
-#suphys has broken matlab for some reason - also quota
 alias quota='echo "" ; df -h ~ | sed /"export"/d ; echo ""'
 #calculates most used commands
 alias used='cat ~/.bash_history | sort | uniq -c | sort -n | tail'
@@ -127,6 +125,7 @@ alias ssh='ssh -Y'
 alias suphysmount='sudo -E mount -a -T /etc/fstab'
 alias makeloop='while true;do make;sleep 4;done'
 alias feh='feh -d' #get filenames
+alias nmatlab='matlab -nodesktop'
 function newest()
 {
     ls --sort=time $* 2> /dev/null | head -1;
