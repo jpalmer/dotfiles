@@ -9,4 +9,5 @@ do
     rm ~/"$x"
     ln -sf "$mydir"/"$x" ~/"$x"
 done
+rm ~/.git #easier than fixing find
 xmonad --recompile && xmonad --restart

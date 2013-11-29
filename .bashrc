@@ -125,7 +125,7 @@ alias ssh='ssh -Y'
 alias suphysmount='sudo -E mount -a -T /etc/fstab'
 alias makeloop='while true;do make;sleep 4;done'
 alias feh='feh -d' #get filenames
-alias nmatlab='matlab -nodesktop'
+alias nmatlab='matlab -nodesktop -nosplash'
 function newest()
 {
     ls --sort=time $* 2> /dev/null | head -1;
