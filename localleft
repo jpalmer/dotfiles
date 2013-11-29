@@ -1,0 +1,10 @@
+background no
+out_to_console yes
+out_to_x no
+update_interval 1.0
+total_run_times 0
+use_spacer none
+lua_load conky_lua.lua
+    
+TEXT
+^fg(green)CPU: ^fg(grey)${CPU}% ^fg(green)Mem: ^fg(grey)${memperc}% ^fg(green)Swap: ^fg(grey)${swapperc} ^fg(green) Disks /:^fg(grey)${lua_parse format %1.4g ${fs_used /} }/${lua_parse format %1.4g ${fs_size /} }GB ^fg(green)Home:^fg(grey) ${lua_parse format %1.4g ${fs_used /home/john} }/${lua_parse format %1.4g ${fs_size /home/john} }GB

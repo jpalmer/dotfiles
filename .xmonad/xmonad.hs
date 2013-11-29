@@ -148,6 +148,6 @@ myconfig =  defaultConfig {
   --   `additionalKeys` --use yeganesh instead of dmenu - automatically sorts entries based on usage which is quite nice
      
 main =do
-    safeSpawnProg "/home/john/dzscr.sh"
+    safeSpawnProg "/home/john/dotfiles/dzlocal.sh"
     xmonad $ myconfig
   --  xmonad =<< statusBar "" xmobarPP{ppOutput= \s->return()} toggleStrutsKey  myconfig

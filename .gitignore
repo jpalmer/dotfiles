@@ -9,3 +9,4 @@
 *.dvi
 *sigfile
 *~
+nohup.out

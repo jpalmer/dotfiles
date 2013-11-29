@@ -6,6 +6,7 @@
  xmodmap -e 'clear Lock' -e 'keycode 0x42 = Escape' &
  # start xmonad
  #xmobar &
+ xrdb -merge ~/.Xdefaults
  exec xmonad
  #gnome)
  #exec gnome-session;;
