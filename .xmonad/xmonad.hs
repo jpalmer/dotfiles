@@ -29,6 +29,7 @@ mykeys conf@arg =M.fromList $ [
        ((modm, xK_p)                  , spawn "exe=`dmenu_path_c | /home/john/.cabal/bin/yeganesh` && eval \"exec $exe\"")
     , ((modm .|. shiftMask, xK_Return), spawn "xterm" )
     , ((modm .|. controlMask, xK_Return), spawn "xterm -bg gray -e ssh -Y  node00" )
+    , ((modm .|. mod1Mask, xK_Return), spawn "xterm -bg NavajoWhite1 -e fsharpi" )
 
     -- close focused window
     , ((modm .|. shiftMask, xK_c     ), kill)

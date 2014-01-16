@@ -175,9 +175,6 @@ echo "*.aux
 *.dvi
 *sigfile" > .gitignore
 }
-#fsharp aliases - could porbably do better with some sor to of copy script
-alias fsc='mono ~/FSharp-2.0.0.0/bin/fsc.exe'
-alias fsi='mono ~/FSharp-2.0.0.0/bin/fsi.exe --readline+ --gui-' 
 
 #WINE
 export WINEPREFIX=~/win32

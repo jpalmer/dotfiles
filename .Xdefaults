@@ -1,3 +1,3 @@
 xterm*saveLines: 4096
 xterm*faceName: consolas:size=10
-dzen2.font:  xft:Bitstream Vera Sans Mono:size=8:antialias=true
+dzen2.font:  consolas:size=10
