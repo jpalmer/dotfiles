@@ -10,3 +10,5 @@
 *sigfile
 *~
 nohup.out
+.vim/.netrwhist
+.vim/view/*

@@ -29,6 +29,8 @@ mykeys conf@arg =M.fromList $ [
        ((modm, xK_p)                  , spawn "exe=`dmenu_path_c | /home/john/.cabal/bin/yeganesh` && eval \"exec $exe\"")
     , ((modm .|. shiftMask, xK_Return), spawn "xterm" )
     , ((modm .|. controlMask, xK_Return), spawn "xterm -bg gray -e ssh -Y  node00" )
+    , ((modm , xK_Menu), spawn "xterm -bg LightBlue1 -e ssh -Y  headnode" )
+    , ((modm .|. mod1Mask, xK_Return), spawn "xterm -bg NavajoWhite1 -e fsharpi" )
 
     -- close focused window
     , ((modm .|. shiftMask, xK_c     ), kill)
@@ -140,7 +142,7 @@ myconfig =  defaultConfig {
      , startupHook      = setWMName "LG3D"   --magic hack for matlab
      , logHook          = updatePointer (Relative 0.5 0.5) --pointer follows focur
      , layoutHook       = myLayout
---     , manageHook       = myManageHook 
+     , manageHook       = idHook 
      , keys             = mykeys   
      , mouseBindings    = myMouseBindings
      , normalBorderColor= myNormalBorderColor
