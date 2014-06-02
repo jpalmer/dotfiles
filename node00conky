@@ -1,0 +1,9 @@
+background no
+out_to_console yes
+out_to_x no
+update_interval 1.0
+total_run_times 0
+use_spacer left
+lua_load ~/dotfiles/conky_lua.lua    
+TEXT
+^fg(white)${nodename_short}  ^fg(green)CPU: ^fg(grey)${CPU}% ^fg(green)Mem: ^fg(grey)${memperc}% ^fg(green)Swap: ^fg(grey)${swapperc}% ^fg(green) CPU_USER: ^fg(grey)${top cpu 1}% ${lua_parse sformat %8s ${top user 1}} |${top cpu 2}% ${lua_parse sformat %8s ${top user 2}} ^fg(green)MEM_USER: ^fg(grey)${top_mem mem 1}% ${lua_parse sformat %8s ${top_mem user 1}} |${top_mem mem 2}% ${lua_parse sformat %8s ${top_mem user 2}}

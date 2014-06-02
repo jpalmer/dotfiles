@@ -21,7 +21,7 @@ unset autologout
 export EDITOR=vim
 export PATH=~/.local/bin:~/.local/sbin:~/.cabal/bin:$PATH:/torque/bin:/torque/sbin:/usr/physics/bin
 export LD_LIBRARY_PATH=".:${HOME}/.local/lib"
-export PKG_CONFIG_PATH=~/.local/lib/pkgconfig
+export PKG_CONFIG_PATH=~/.local/lib/pkgconfig:/usr/lib/pkgconfig:/usr/lib64/pkgconfig
 # set ICT proxy 
 HTTP_PROXY=http://web-cache.usyd.edu.au:8080
 export http_proxy=$HTTP_PROXY
@@ -52,7 +52,6 @@ export LD_LIBRARY_PATH=.:~/.local/lib
 export LD_RUN_PATH=.:~/.local/lib
 export LIBRARY_PATH=~/.local/lib
 export CPATH=~/.local/include
-export PKG_CONFIG_PATH="/suphys/jpal8929/.local/lib/pkgconfig:/usr/lib/pkgconfig:/usr/lib64/pkgconfig"
 export PROMPT_COMMAND=''
 # If not running interactively, don't do anything
 [ -z "$PS1" ] && return
