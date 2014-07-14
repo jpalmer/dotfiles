@@ -11,3 +11,8 @@ do
 done
 rm ~/.git #easier than fixing find
 xmonad --recompile && xmonad --restart
+pip install --user git+git://github.com/Lokaltog/powerline
+echo "copying fonts"
+cp "Consolas Bold for Powerline.ttf" "Consolas for Powerline.ttf" ~/.fonts
+fc-cache -vf ~/.fonts
+

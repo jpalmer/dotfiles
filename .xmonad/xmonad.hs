@@ -3,11 +3,13 @@ import System.Exit
 import XMonad.Hooks.SetWMName --to make matlab work
 import XMonad.Actions.UpdatePointer --mouse follows focum
 import XMonad.Hooks.ManageDocks --struts (xmobar)
+import XMonad.Util.EZConfig
 import XMonad.Hooks.DynamicLog --xmobar
 import XMonad.Util.Run --safespawn
+import XMonad.Layout.Grid
 import qualified Data.Map as M --for keys konfig
 import qualified XMonad.StackSet as W -- various window manipulations
-myLayout = avoidStruts $ tiled ||| Full
+myLayout = avoidStruts $ tiled ||| Full ||| Grid
   where
      -- default tiling algorithm partitions the screen into two panes
      tiled   = Tall nmaster delta ratio
@@ -133,16 +135,19 @@ myMouseBindings (XConfig {XMonad.modMask = modm}) = M.fromList $
 
     -- you may also bind events to the mouse scroll wheel (button4 and button5)
     ]
-
+myManageHook = composeAll 
+    [className =? "MPlayer" --> doShift "2:mplayer",
+    className =? "Viewer0" --> doFloat]
 myNormalBorderColor  = "#000000" --black
 myFocusedBorderColor = "#ff0000" --red
 myconfig =  defaultConfig {
       modMask           = mod4Mask           --winkey is magic
+     , workspaces = ["1:dev","2:mplayer","3:web","4:comm","5:ham","6:tmp","7:dvi","8","9","0","-","="]
      , borderWidth      = 1                  --border size
      , startupHook      = setWMName "LG3D"   --magic hack for matlab
      , logHook          = updatePointer (Relative 0.5 0.5) --pointer follows focur
      , layoutHook       = myLayout
-     , manageHook       = idHook 
+     , manageHook       = myManageHook
      , keys             = mykeys   
      , mouseBindings    = myMouseBindings
      , normalBorderColor= myNormalBorderColor

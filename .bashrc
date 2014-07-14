@@ -19,6 +19,7 @@ umask 022
 # disable autologout
 unset autologout 
 export EDITOR=vim
+export BROWSER=chromium
 export PATH=~/.local/bin:~/.local/sbin:~/.cabal/bin:$PATH:/torque/bin:/torque/sbin:/usr/physics/bin
 export LD_LIBRARY_PATH=".:${HOME}/.local/lib"
 export PKG_CONFIG_PATH=~/.local/lib/pkgconfig:/usr/lib/pkgconfig:/usr/lib64/pkgconfig
@@ -74,7 +75,7 @@ blue="$(tput setaf 4)"
 reset="$(tput sgr0)"
 ps1prefix=""
 ps1postfix=""
-export PS1='$ps1prefix\[$reset$bg\]'"\h"'\[$red\]'" \w "'\[$blue\] $(__git_ps1 "%s") $($ps1postfix) \[$reset\]\$'
+#export PS1='$ps1prefix\[$reset$bg\]'"\h"'\[$red\]'" \w "'\[$blue\] $(__git_ps1 "%s") $($ps1postfix) \[$reset\]\$'
 [[ -f ~/dotfiles/`hostname -s` ]]                                    && source ~/dotfiles/`hostname -s`
 
 
@@ -186,3 +187,5 @@ bind "set completion-ignore-case on"
 [[ -f ~/.local/etc/bash_completion.d/git-completion.bash ]] && source ~/.local/etc/bash_completion.d/git-completion.bash
 [[ -f ~/glados.txt ]]                                       && echo `sort -R ~/glados.txt | head -n 1`
 [[ -f /usr/share/doc/pkgfile/command-not-found.bash ]]      && source /usr/share/doc/pkgfile/command-not-found.bash
+. ~/dotfiles/powerline/bindings/bash/powerline.sh 
+#export PYTHONPATH=~/dotfiles/
