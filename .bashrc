@@ -187,5 +187,4 @@ bind "set completion-ignore-case on"
 [[ -f ~/.local/etc/bash_completion.d/git-completion.bash ]] && source ~/.local/etc/bash_completion.d/git-completion.bash
 [[ -f ~/glados.txt ]]                                       && echo `sort -R ~/glados.txt | head -n 1`
 [[ -f /usr/share/doc/pkgfile/command-not-found.bash ]]      && source /usr/share/doc/pkgfile/command-not-found.bash
-. ~/dotfiles/powerline/bindings/bash/powerline.sh 
-#export PYTHONPATH=~/dotfiles/
+. ~/dotfiles/powerline.sh 
