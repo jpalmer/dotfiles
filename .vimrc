@@ -8,6 +8,10 @@ Plugin 'Valloric/YouCompleteMe'
 Plugin 'kien/ctrlp.vim'
 Plugin 'scrooloose/nerdtree'
 Plugin 'Lokaltog/powerline'
+Plugin 'godlygeek/tabular'
+Plugin 'spf13/vim-autoclose'
+Plugin 'bronson/vim-trailing-whitespace'
+Plugin 'scrooloose/nerdcommenter'
 call vundle#end()
 let g:ycm_extra_conf_globlist=['~/conductance/*'] "autoload config for completion in conductance
 set completeopt-=preview
