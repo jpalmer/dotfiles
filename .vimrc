@@ -12,8 +12,9 @@ Plugin 'godlygeek/tabular'
 Plugin 'spf13/vim-autoclose'
 Plugin 'bronson/vim-trailing-whitespace'
 Plugin 'scrooloose/nerdcommenter'
+Plugin 'vim-scripts/a.vim'
 call vundle#end()
-let g:ycm_extra_conf_globlist=['~/conductance/*'] "autoload config for completion in conductance
+let g:ycm_extra_conf_globlist=['~/conductance/*','/data/*'] "autoload config for completion in conductance
 set completeopt-=preview
 let g:ycm_add_preview_to_ocmpleteopt=0
 filetype plugin indent on
@@ -58,7 +59,7 @@ set number
 set autoindent
 syn on
 set expandtab
-au BufRead,BufNewFile makefile set noexpandtab
+au BufRead,BufNewFile makefile rsnapshot.conf set noexpandtab
 set guifont=Droid\ Sans\ Mono\ 10
 ") remap keys - first part stops arrow keys, second makes j,k move by screen line rather than file line
 nnoremap ; :
