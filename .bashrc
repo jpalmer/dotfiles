@@ -22,7 +22,7 @@ export EDITOR=vim
 export BROWSER=chromium
 export PATH=~/.local/bin:~/.local/sbin:~/.cabal/bin:$PATH:/torque/bin:/torque/sbin:/usr/physics/bin
 export LD_LIBRARY_PATH=".:${HOME}/.local/lib"
-export PKG_CONFIG_PATH=~/.local/lib/pkgconfig:/usr/lib/pkgconfig:/usr/lib64/pkgconfig
+export PKG_CONFIG_PATH=~/.local/lib/pkgconfig:/usr/lib/pkgconfig:/usr/lib64/pkgconfig:/usr/share/pkgconfig
 # set ICT proxy 
 HTTP_PROXY=http://web-cache.usyd.edu.au:8080
 export http_proxy=$HTTP_PROXY
@@ -49,7 +49,7 @@ HISTFILESIZE=200000000
 
 # USER CUSTOM SETTINGS BELOW #
 #make mono find dlls properly
-export LD_LIBRARY_PATH=.:~/.local/lib
+export LD_LIBRARY_PATH=.:~/.local/lib:~/.local/lib64
 export LD_RUN_PATH=.:~/.local/lib
 export LIBRARY_PATH=~/.local/lib
 export CPATH=~/.local/include
