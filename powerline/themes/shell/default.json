@@ -1,0 +1,76 @@
+{
+    "default_module": "powerline.segments.common",
+    "segment_data": {
+        "hostname": {
+            "before": " ",
+            "args": {
+                "only_if_ssh": true
+            }
+        },
+        "virtualenv": {
+            "before": "ⓔ  "
+        },
+        "branch": {
+            "before": " "
+        }
+    },
+    "segments": {
+        "above": [ 
+
+        {
+            "left":[
+            {
+                "module": "powerline.segments.shell",
+                "name": "mode"
+            },
+            {
+                "name": "hostname"
+            },
+            {
+                "name": "user"
+            },
+            {
+                "name": "virtualenv"
+            },
+            {
+                "name": "cwd",
+                "args": {
+                    "dir_limit_depth": 3
+                }
+            },
+            {
+                "module": "powerline.segments.shell",
+                "name": "jobnum"
+            },
+            {
+                "type":"string",
+                "contents":"",
+                "width":"auto",
+                "highlight_group":["blank"],
+                "draw_hard_divider":false,
+                "draw_soft_divider":false
+            }
+            ],
+                "right":[
+                {
+                    "align":"r",
+                    "name": "branch",
+                    "args":{
+                        "status_colors":true,
+                        "create_watcher":true
+                    }
+                }
+            ]
+        }
+        ],
+            "left":[
+            {
+                "type":"string",
+                "contents":">",
+                "highlight_group":["user"],
+                "draw_hard_divider":false,
+                "draw_soft_divider":false
+            }
+        ]
+    }
+}
