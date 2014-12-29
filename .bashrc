@@ -20,7 +20,7 @@ umask 022
 unset autologout 
 export EDITOR=vim
 export BROWSER=chromium
-export PATH=~/.local/bin:~/.local/sbin:~/.cabal/bin:$PATH:/torque/bin:/torque/sbin:/usr/physics/bin
+export PATH=~/.local/bin:~/.local/sbin:~/.cabal/bin:$PATH:/torque/bin:/torque/sbin:/usr/physics/bin:~/android-ndk
 export LD_LIBRARY_PATH=".:${HOME}/.local/lib"
 export PKG_CONFIG_PATH=~/.local/lib/pkgconfig:/usr/lib/pkgconfig:/usr/lib64/pkgconfig
 # set ICT proxy 
@@ -179,7 +179,7 @@ echo "*.aux
 #WINE
 export WINEPREFIX=~/win32
 export WINEARCH=win32
-
+export NDK_HOME=~/android-ndk
 bind "set completion-ignore-case on"
 [[ -f ~/.autojump/etc/profile.d/autojump.bash ]]            && source ~/.autojump/etc/profile.d/autojump.bash
 [[ -f /etc/profile.d/autojump.bash ]]                       && source /etc/profile.d/autojump.bash 
