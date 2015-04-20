@@ -1,5 +1,6 @@
 set disassembly-flavor intel
-#add-auto-load-safe-path /usr/bin/mono-gdb.py
+set print pretty on
+add-auto-load-safe-path /usr/bin/mono-gdb.py
 handle SIGXCPU SIG33 SIG35 SIGPWR nostop noprint
 define mono_backtrace
  select-frame 0

@@ -1,2 +1,4 @@
 export bg=""
-alias matlab='/usr/local/MATLAB/R2013a/bin/matlab '
+alias matlab='matlab -nosoftwareopengl'
+unalias nmatlab
+alias nmatlab='matlab -nosoftwareopengl -nodesktop -nosplash'

@@ -1,25 +1,32 @@
 set nocompatible    "vundle setup
-filetype off        
+filetype off
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 Plugin 'gmarik/Vundle.vim'
 Plugin 'majutsushi/tagbar'
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'kien/ctrlp.vim'
-Plugin 'scrooloose/nerdtree'
-Bundle 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim'}
+""Plugin 'scrooloose/nerdtree'
+Plugin 'Lokaltog/powerline'
+Plugin 'godlygeek/tabular'
+""Plugin 'spf13/vim-autoclose'
+Plugin 'bronson/vim-trailing-whitespace'
+Plugin 'scrooloose/nerdcommenter'
+Plugin 'vim-scripts/a.vim'
+Plugin 'tpope/vim-dispatch'
+Plugin 'vimoutliner/vimoutliner'
 call vundle#end()
-let g:ycm_extra_conf_globlist=['~/conductance/*'] "autoload config for completion in conductance
+let g:ycm_extra_conf_globlist=['~/conductance/*','/data/*'] "autoload config for completion in conductance
 set completeopt-=preview
 let g:ycm_add_preview_to_ocmpleteopt=0
 filetype plugin indent on
 au BufReadPre * setlocal foldmethod=indent
 let g:skipview_files = [
-            \ '[EXAMPLE PLUGIN BUFFER]'
+            \ '[EXAMPLE PLUGIN BU   FFER]'
             \ ]
 function! MakeViewCheck()
     if has('quickfix') && &buftype =~ 'nofile'
-        " Buffer is marked as not a file
+        " Buffer is marked as n ot a file
         return 0
     endif
     if empty(glob(expand('%:p')))
@@ -41,7 +48,7 @@ function! MakeViewCheck()
     return 1
 endfunction
 augroup vimrcAutoView
-    autocmd!    
+    autocmd!
     " Autosave & Load Views.
     autocmd BufWritePost,BufLeave,WinLeave ?* if MakeViewCheck() | mkview | endif
     autocmd BufWinEnter ?* if MakeViewCheck() | silent loadview | endif
@@ -54,7 +61,6 @@ set number
 set autoindent
 syn on
 set expandtab
-au BufRead,BufNewFile makefile set noexpandtab
 set guifont=Droid\ Sans\ Mono\ 10
 ") remap keys - first part stops arrow keys, second makes j,k move by screen line rather than file line
 nnoremap ; :
@@ -66,7 +72,7 @@ nnoremap j gj
 nnoremap k gk
 nnoremap <End> g<End>
 nnoremap <Home> g<Home>
-nmap <F8> :TagbarToggle<CR>
+""nmap <F8> :TagbarToggle<CR>
 ") search options
 set ignorecase
 set smartcase
@@ -82,8 +88,6 @@ set wildmode=list:longest,full
 set cursorline
 set ttyfast
 set ruler
-map <C-V>   	"+gP
-imap <C-V>      <Esc>l"+gPi
 set mouse=a
 ""get nice error window when running make
 autocmd QuickFixCmdPost [^l]* nested cwindow
@@ -92,3 +96,7 @@ cabbrev make make!
 set laststatus=2 "always show status line
 set backspace=2 "backspace is sensible"
 let g:ycm_complete_blacklist = {'tex':1}
+set guioptions-=L "hide scroll bar"
+set guioptions-=r "hide scroll bar"
+
+set colorcolumn=80

@@ -9,6 +9,8 @@ import XMonad.Util.Run --safespawn
 import XMonad.Layout.Grid
 import qualified Data.Map as M --for keys konfig
 import qualified XMonad.StackSet as W -- various window manipulations
+data LibNotifyUrgencyHook = LibNotifyUrgencyHook deriving (Read, Show)
+
 myLayout = avoidStruts $ tiled ||| Full ||| Grid
   where
      -- default tiling algorithm partitions the screen into two panes
@@ -29,9 +31,9 @@ toggleStrutsKey arg = (modm,xK_b)
 
 mykeys conf@arg =M.fromList $ [ 
        ((modm, xK_p)                  , spawn "exe=`dmenu_path_c | /home/john/.cabal/bin/yeganesh` && eval \"exec $exe\"")
-    , ((modm .|. shiftMask, xK_Return), spawn "xterm" )
+    , ((modm .|. shiftMask, xK_Return), spawn "terminology" )
     , ((modm .|. controlMask, xK_Return), spawn "xterm -bg gray -e ssh -Y  node00" )
-    , ((modm , xK_Menu), spawn "xterm -bg LightBlue1 -e ssh -Y  headnode" )
+    , ((modm , xK_Menu), spawn "terminology --theme=mysolarized -e ssh -Y  headnode" )
     , ((modm .|. mod1Mask, xK_Return), spawn "xterm -bg NavajoWhite1 -e fsharpi" )
 
     -- close focused window
@@ -92,13 +94,12 @@ mykeys conf@arg =M.fromList $ [
     , ((modm .|. shiftMask, xK_q     ), io (exitWith ExitSuccess))
 
     -- Restart xmonad
-    , ((modm              , xK_q     ), spawn "xmonad --recompile; xmonad --restart")
+    , ((modm .|. shiftMask, xK_p     ), spawn "xmonad --recompile; xmonad --restart")
 
     -- Run xmessage with a summary of the default keybindings (useful for beginners)
  --   , ((modMask .|. shiftMask, xK_slash ), spawn ("echo \"" ++ help ++ "\" | xmessage -file -"))
     ]
     ++
-
     --
     -- mod-[1..9], Switch to workspace N
     -- mod-shift-[1..9], Move client to workspace N
@@ -107,13 +108,12 @@ mykeys conf@arg =M.fromList $ [
         | (i, k) <- zip (XMonad.workspaces conf) [xK_1 .. xK_9]
         , (f, m) <- [(W.greedyView, 0), (W.shift, shiftMask)]]
     ++
-
     --
     -- mod-{w,e,r}, Switch to physical/Xinerama screens 1, 2, or 3
     -- mod-shift-{w,e,r}, Move client to screen 1, 2, or 3
     --
     [((m .|. modm, key), screenWorkspace sc >>= flip whenJust (windows . f))
-        | (key, sc) <- zip [xK_w, xK_e, xK_r] [0..]
+        | (key, sc) <- zip [xK_r, xK_e, xK_q, xK_w] [0..]
         , (f, m) <- [(W.view, 0), (W.shift, shiftMask)]]
 
 
@@ -156,5 +156,5 @@ myconfig =  defaultConfig {
      
 main =do
     safeSpawnProg "/home/john/dotfiles/dzlocal.sh"
-    xmonad $ myconfig
+    xmonad  $  myconfig
   --  xmonad =<< statusBar "" xmobarPP{ppOutput= \s->return()} toggleStrutsKey  myconfig

@@ -1,7 +1,7 @@
 #start with some suphys stuff
 # exec default bashrc
 if [ -f /etc/bashrc ]; then
-        . /etc/bashrc   
+        . /etc/bashrc
 fi
 if [ "$TERM" = rxvt-unicode-256color ]
 then
@@ -17,12 +17,12 @@ ulimit -S -c 0
 umask 022
 
 # disable autologout
-unset autologout 
+unset autologout
 export EDITOR=vim
 export BROWSER=chromium
 export PATH=~/.local/bin:~/.local/sbin:~/.cabal/bin:$PATH:/torque/bin:/torque/sbin:/usr/physics/bin
 export LD_LIBRARY_PATH=".:/usr/physics/matlab2013a/bin/glnxa64:${HOME}/.local/lib:${HOME}/.local/lib64"
-export PKG_CONFIG_PATH=~/.local/lib/pkgconfig:/usr/lib/pkgconfig:/usr/lib64/pkgconfig
+export PKG_CONFIG_PATH=~/.local/lib/pkgconfig:/usr/lib/pkgconfig:/usr/lib64/pkgconfig:/usr/share/pkgconfig
 # set ICT proxy 
 HTTP_PROXY=http://web-cache.usyd.edu.au:8080
 export http_proxy=$HTTP_PROXY
@@ -36,7 +36,7 @@ HISTCONTROL=ignoredups:ignorespace
 # append to the history file, no overwrite
 shopt -s histappend
 
-# history length 
+# history length
 HISTSIZE=100000000
 HISTFILESIZE=200000000
 
@@ -54,6 +54,8 @@ export LD_RUN_PATH=.:~/.local/lib:~/.local/lib64
 export LIBRARY_PATH=/usr/physics/matlab2013a/bin/glnxa64:~/.local/lib:~/.local/lib64
 export CPATH=~/.local/include
 export PROMPT_COMMAND=''
+LESSOPEN="|lesspipe.sh %s"; export LESSOPEN
+
 # If not running interactively, don't do anything
 [ -z "$PS1" ] && return
 
@@ -75,11 +77,13 @@ blue="$(tput setaf 4)"
 reset="$(tput sgr0)"
 ps1prefix=""
 ps1postfix=""
+
+alias nmatlab='matlab -nodesktop -nosplash'
 #export PS1='$ps1prefix\[$reset$bg\]'"\h"'\[$red\]'" \w "'\[$blue\] $(__git_ps1 "%s") $($ps1postfix) \[$reset\]\$'
 [[ -f ~/dotfiles/`hostname -s` ]]                                    && source ~/dotfiles/`hostname -s`
 
 
-#not sure what any of the escape codes do - important bit is the __git_ps1 to show branch 
+#not sure what any of the escape codes do - important bit is the __git_ps1 to show branch
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
@@ -93,7 +97,7 @@ if [ -x /usr/bin/dircolors ]; then
 fi
 #spelling aliases
 alias got='git'
-alias ci='vim' 
+alias ci='vim'
 alias ks='ls'
 alias ake='make'
 alias nake='make'
@@ -125,7 +129,6 @@ alias ssh='ssh -Y'
 alias suphysmount='sudo -E mount -a -T /etc/fstab'
 alias makeloop='while true;do make;sleep 4;done'
 alias feh='feh -d' #get filenames
-alias nmatlab='matlab -nodesktop -nosplash'
 function newest()
 {
     ls --sort=time $* 2> /dev/null | head -1;
@@ -154,12 +157,12 @@ exec evince "$1" &
 }
 #create a skeleton latex document
 function latheader {
-echo "\documentclass{article} 
-\usepackage{amsmath,mypack} 
-\begin{document} 
-\author{John Palmer, SID : 308219805} 
-\title{TITLE HERE !!!} 
-\maketitle 
+echo "\documentclass{article}
+\usepackage{amsmath,mypack}
+\begin{document}
+\author{John Palmer, SID : 308219805}
+\title{TITLE HERE !!!}
+\maketitle
 
 \end{document}" > $1
 }
@@ -181,12 +184,22 @@ alias watch='watch --color'
 #WINE
 export WINEPREFIX=~/win32
 export WINEARCH=win32
+export NDK_HOME=~/android-ndk
+export ANDROID_NDK_ROOT=~/android-ndk
 
+export MAKEFLAGS='-j8'
 bind "set completion-ignore-case on"
 [[ -f ~/.autojump/etc/profile.d/autojump.bash ]]            && source ~/.autojump/etc/profile.d/autojump.bash
-[[ -f /etc/profile.d/autojump.bash ]]                       && source /etc/profile.d/autojump.bash 
+[[ -f /etc/profile.d/autojump.bash ]]                       && source /etc/profile.d/autojump.bash
 [[ -f /usr/share/git/git-prompt.sh  ]]                       && source /usr/share/git/git-prompt.sh
 [[ -f ~/.local/etc/bash_completion.d/git-completion.bash ]] && source ~/.local/etc/bash_completion.d/git-completion.bash
 [[ -f ~/glados.txt ]]                                       && echo `sort -R ~/glados.txt | head -n 1`
 [[ -f /usr/share/doc/pkgfile/command-not-found.bash ]]      && source /usr/share/doc/pkgfile/command-not-found.bash
-. ~/dotfiles/powerline.sh 
+. ~/dotfiles/powerline.sh
+alias howdoi='howdoi -c'
+
+PATH="/home/john/perl5/bin${PATH+:}${PATH}"; export PATH;
+PERL5LIB="/home/john/perl5/lib/perl5${PERL5LIB+:}${PERL5LIB}"; export PERL5LIB;
+PERL_LOCAL_LIB_ROOT="/home/john/perl5${PERL_LOCAL_LIB_ROOT+:}${PERL_LOCAL_LIB_ROOT}"; export PERL_LOCAL_LIB_ROOT;
+PERL_MB_OPT="--install_base \"/home/john/perl5\""; export PERL_MB_OPT;
+PERL_MM_OPT="INSTALL_BASE=/home/john/perl5"; export PERL_MM_OPT;

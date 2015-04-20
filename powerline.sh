@@ -23,7 +23,7 @@ _powerline_tmux_set_pwd() {
 }
 
 _powerline_tmux_set_columns() {
-	_powerline_tmux_setenv COLUMNS "${COLUMNS:-$(_powerline_columns_fallback)}"
+	_powerline_tmux_setenv COLUMNS "${COLUMNS:-`_powerline_columns_fallback`}"
 }
 
 _powerline_init_tmux_support() {
@@ -31,44 +31,69 @@ _powerline_init_tmux_support() {
 		# TMUX variable may be unset to create new tmux session inside this one
 		_POWERLINE_TMUX="$TMUX"
 
-		trap "_powerline_tmux_set_columns" WINCH
+		trap '_powerline_tmux_set_columns' WINCH
 		_powerline_tmux_set_columns
 
 		test "x$PROMPT_COMMAND" != "x${PROMPT_COMMAND/_powerline_tmux_set_pwd}" ||
-			export PROMPT_COMMAND="${PROMPT_COMMAND}"$'\n_powerline_tmux_set_pwd'
+			PROMPT_COMMAND="${PROMPT_COMMAND}"$'\n_powerline_tmux_set_pwd'
 	fi
+}
+
+_powerline_local_prompt() {
+	# Arguments: side, renderer_module arg, last_exit_code, jobnum, local theme
+	"$POWERLINE_COMMAND" $POWERLINE_COMMAND_ARGS shell $1 \
+		$2 \
+		--last-exit-code=$3 \
+		--jobnum=$4 \
+		--renderer-arg="client_id=$$" \
+		--renderer-arg="local_theme=$5"
 }
 
 _powerline_prompt() {
 	# Arguments: side, last_exit_code, jobnum
-	$POWERLINE_COMMAND shell $1 -w "${COLUMNS:-$(_powerline_columns_fallback)}" -r bash_prompt --last_exit_code=$2 --jobnum=$3
+	"$POWERLINE_COMMAND" $POWERLINE_COMMAND_ARGS shell $1 \
+		--width="${COLUMNS:-$(_powerline_columns_fallback)}" \
+		-r.bash \
+		--last-exit-code=$2 \
+		--jobnum=$3 \
+		--renderer-arg="client_id=$$"
 }
 
 _powerline_set_prompt() {
 	local last_exit_code=$?
 	local jobnum="$(jobs -p|wc -l)"
 	PS1="$(_powerline_prompt aboveleft $last_exit_code $jobnum)"
+	if test -n "$POWERLINE_SHELL_CONTINUATION$POWERLINE_BASH_CONTINUATION" ; then
+		PS2="$(_powerline_local_prompt left -r.bash $last_exit_code $jobnum continuation)"
+	fi
+	if test -n "$POWERLINE_SHELL_SELECT$POWERLINE_BASH_SELECT" ; then
+		PS3="$(_powerline_local_prompt left '' $last_exit_code $jobnum select)"
+	fi
 	return $last_exit_code
 }
 
 _powerline_setup_prompt() {
 	VIRTUAL_ENV_DISABLE_PROMPT=1
 	if test -z "${POWERLINE_COMMAND}" ; then
-		if which powerline-config &>/dev/null ; then
-			export POWERLINE_COMMAND="$(powerline-config shell command)"
-		else
-			# `$0` is set to `-bash` when using SSH so that won't work
-			local powerline_dir="$(dirname "$BASH_SOURCE")/../../.."
-			export POWERLINE_COMMAND="$($powerline_dir/scripts/powerline-config shell command)"
-		fi
+		POWERLINE_COMMAND="$("$POWERLINE_CONFIG_COMMAND" shell command)"
 	fi
 	test "x$PROMPT_COMMAND" != "x${PROMPT_COMMAND%_powerline_set_prompt*}" ||
-		export PROMPT_COMMAND=$'_powerline_set_prompt\n'"${PROMPT_COMMAND}"
+		PROMPT_COMMAND=$'_powerline_set_prompt\n'"${PROMPT_COMMAND}"
+	PS2="$(_powerline_local_prompt left -r.bash 0 0 continuation)"
+	PS3="$(_powerline_local_prompt left '' 0 0 select)"
 }
 
-if test -z "$POWERLINE_NO_BASH_PROMPT$POWERLINE_NO_SHELL_PROMPT" ; then
+if test -z "${POWERLINE_CONFIG_COMMAND}" ; then
+	if which powerline-config >/dev/null ; then
+		POWERLINE_CONFIG_COMMAND=powerline-config
+	else
+		POWERLINE_CONFIG_COMMAND="$(dirname "$BASH_SOURCE")/../../../scripts/powerline-config"
+	fi
+fi
+
+if "${POWERLINE_CONFIG_COMMAND}" shell --shell=bash uses prompt ; then
 	_powerline_setup_prompt
 fi
-if test -z "$POWERLINE_NO_BASH_TMUX_SUPPORT$POWERLINE_NO_SHELL_TMUX_SUPPORT" ; then
+if "${POWERLINE_CONFIG_COMMAND}" shell --shell=bash uses tmux ; then
 	_powerline_init_tmux_support
 fi
