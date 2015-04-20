@@ -1,0 +1,11 @@
+[Unit]
+Description = Lightweight Notification Daemon
+Requires = slim.service
+After = slim.service
+[Service]
+Type = simple
+Restart = always
+RestartSec = 10
+ExecStart = /usr/bin/dunst
+[Install]
+WantedBy = user-programs.target

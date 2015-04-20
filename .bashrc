@@ -54,7 +54,6 @@ export LD_RUN_PATH=.:~/.local/lib
 export LIBRARY_PATH=~/.local/lib
 export CPATH=~/.local/include
 export PROMPT_COMMAND=''
-export PAGER=most
 LESSOPEN="|lesspipe.sh %s"; export LESSOPEN
 
 # If not running interactively, don't do anything
@@ -194,3 +193,10 @@ bind "set completion-ignore-case on"
 [[ -f ~/glados.txt ]]                                       && echo `sort -R ~/glados.txt | head -n 1`
 [[ -f /usr/share/doc/pkgfile/command-not-found.bash ]]      && source /usr/share/doc/pkgfile/command-not-found.bash
 . ~/dotfiles/powerline.sh
+alias howdoi='howdoi -c'
+
+PATH="/home/john/perl5/bin${PATH+:}${PATH}"; export PATH;
+PERL5LIB="/home/john/perl5/lib/perl5${PERL5LIB+:}${PERL5LIB}"; export PERL5LIB;
+PERL_LOCAL_LIB_ROOT="/home/john/perl5${PERL_LOCAL_LIB_ROOT+:}${PERL_LOCAL_LIB_ROOT}"; export PERL_LOCAL_LIB_ROOT;
+PERL_MB_OPT="--install_base \"/home/john/perl5\""; export PERL_MB_OPT;
+PERL_MM_OPT="INSTALL_BASE=/home/john/perl5"; export PERL_MM_OPT;

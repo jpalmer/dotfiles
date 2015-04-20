@@ -7,4 +7,4 @@ use_spacer none
 lua_load ~/dotfiles/conky_lua.lua
     
 TEXT
-^fg(white)${nodename_short}  ^fg(green)CPU: ^fg(grey)${CPU}% ^fg(green)Mem: ^fg(grey)${memperc}% ^fg(green)Swap: ^fg(grey)${swapperc} ^fg(green) Disks /:^fg(grey)${lua_parse format %1.4g ${fs_used /} }/${lua_parse format %1.4g ${fs_size /} }GB ^fg(green)Home:^fg(grey) ${lua_parse format %1.4g ${fs_used /home/john} }/${lua_parse format %1.4g ${fs_size /home/john} }GB
+^fg(white)${nodename_short}  ^fg(green)CPU: ^fg(grey)${CPU}% ^fg(green)Mem: ^fg(grey)${memperc}% ^fg(green)Swap: ^fg(grey)${swapperc} ^fg(green) Disks /:^fg(grey)${lua_parse format %1.4g ${fs_used /} }/${lua_parse format %1.4g ${fs_size /} }GB ^fg(green)Home:^fg(grey) ${lua_parse format %1.4g ${fs_used /home/john} }/${lua_parse format %1.4g ${fs_size /home/john} }GB  ^fg(green)Data:^fg(grey) ${lua_parse format %1.4g ${fs_used /data} }/${lua_parse format %1.4g ${fs_size /data} }GB

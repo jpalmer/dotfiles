@@ -9,6 +9,8 @@ import XMonad.Util.Run --safespawn
 import XMonad.Layout.Grid
 import qualified Data.Map as M --for keys konfig
 import qualified XMonad.StackSet as W -- various window manipulations
+data LibNotifyUrgencyHook = LibNotifyUrgencyHook deriving (Read, Show)
+
 myLayout = avoidStruts $ tiled ||| Full ||| Grid
   where
      -- default tiling algorithm partitions the screen into two panes
@@ -29,9 +31,9 @@ toggleStrutsKey arg = (modm,xK_b)
 
 mykeys conf@arg =M.fromList $ [ 
        ((modm, xK_p)                  , spawn "exe=`dmenu_path_c | /home/john/.cabal/bin/yeganesh` && eval \"exec $exe\"")
-    , ((modm .|. shiftMask, xK_Return), spawn "xterm" )
+    , ((modm .|. shiftMask, xK_Return), spawn "terminology" )
     , ((modm .|. controlMask, xK_Return), spawn "xterm -bg gray -e ssh -Y  node00" )
-    , ((modm , xK_Menu), spawn "xterm -bg LightBlue1 -e ssh -Y  headnode" )
+    , ((modm , xK_Menu), spawn "terminology --theme=mysolarized -e ssh -Y  headnode" )
     , ((modm .|. mod1Mask, xK_Return), spawn "xterm -bg NavajoWhite1 -e fsharpi" )
 
     -- close focused window
@@ -154,5 +156,5 @@ myconfig =  defaultConfig {
      
 main =do
     safeSpawnProg "/home/john/dotfiles/dzlocal.sh"
-    xmonad $ myconfig
+    xmonad  $  myconfig
   --  xmonad =<< statusBar "" xmobarPP{ppOutput= \s->return()} toggleStrutsKey  myconfig
