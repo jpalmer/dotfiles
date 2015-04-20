@@ -9,6 +9,8 @@ do
     rm ~/"$x"
     ln -sf "$mydir"/"$x" ~/"$x"
 done
+rm -rf ~/.config/powerline
+ln -sf "$mydir"/powerline ~/.config/powerline
 rm ~/.git #easier than fixing find
 xmonad --recompile && xmonad --restart
 pip install --user git+git://github.com/Lokaltog/powerline

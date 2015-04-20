@@ -7,7 +7,7 @@ Plugin 'majutsushi/tagbar'
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'kien/ctrlp.vim'
 Plugin 'scrooloose/nerdtree'
-Plugin 'Lokaltog/powerline'
+Bundle 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim'}
 call vundle#end()
 let g:ycm_extra_conf_globlist=['~/conductance/*'] "autoload config for completion in conductance
 set completeopt-=preview
@@ -89,5 +89,6 @@ set mouse=a
 autocmd QuickFixCmdPost [^l]* nested cwindow
 autocmd QuickFixCmdPost    l* nested lwindow
 cabbrev make make!
-set rtp+=~/.vim/bundle/powerline/powerline/bindings/vim
 set laststatus=2 "always show status line
+set backspace=2 "backspace is sensible"
+let g:ycm_complete_blacklist = {'tex':1}
