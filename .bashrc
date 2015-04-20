@@ -185,6 +185,7 @@ export WINEARCH=win32
 export NDK_HOME=~/android-ndk
 export ANDROID_NDK_ROOT=~/android-ndk
 
+export MAKEFLAGS='-j8'
 bind "set completion-ignore-case on"
 [[ -f ~/.autojump/etc/profile.d/autojump.bash ]]            && source ~/.autojump/etc/profile.d/autojump.bash
 [[ -f /etc/profile.d/autojump.bash ]]                       && source /etc/profile.d/autojump.bash
